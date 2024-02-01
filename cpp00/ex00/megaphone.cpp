@@ -7,9 +7,7 @@ int main(int ac, char **av) {
 	}
 	for (int i=1; i<ac; i++) {
 		std::string S = av[i];
-		for (size_t j=0; j<S.length(); j++) {
-			S[j] = std::toupper(S[j]);
-		}
+		std::transform(S.begin(), S.end(), S.begin(), ::toupper);
 		std::cout << S;
 	}
 	std::cout << std::endl;
