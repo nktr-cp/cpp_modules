@@ -18,7 +18,7 @@ class Zombie {
 
 		Zombie &operator=(const Zombie &zombie);
 
-		void announce(void) const;
+		void announce(void);
 };
 
 Zombie* newZombie(std::string name);

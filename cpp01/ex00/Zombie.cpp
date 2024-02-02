@@ -10,7 +10,7 @@ Zombie::Zombie(const Zombie &zombie) {
 }
 
 Zombie::~Zombie() {
-	std::cout << "Zombie destructor called." << std::endl;
+	std::cout << this->name_ << ": " << "destructor called." << std::endl;
 }
 
 Zombie &Zombie::operator=(const Zombie &zombie) {
@@ -21,8 +21,6 @@ Zombie &Zombie::operator=(const Zombie &zombie) {
 	return *this;
 }
 
-void Zombie::announce() const {
+void Zombie::announce() {
 	std::cout << this->name_ << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
-
-
