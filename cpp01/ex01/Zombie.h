@@ -20,7 +20,7 @@ class Zombie {
 
 		void announce(void);
 
-		void setname(std::string name);
+		void setName(std::string name);
 };
 
 Zombie* zombieHorde(int N, std::string name);

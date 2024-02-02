@@ -10,6 +10,9 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
+check: all
+	leaks -q -atExit -- ./$(NAME)
+
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 

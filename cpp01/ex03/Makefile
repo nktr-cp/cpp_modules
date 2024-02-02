@@ -1,5 +1,8 @@
-NAME := ex02
-SRC := main.cpp
+NAME := ex03
+SRC := main.cpp \
+			 Weapon.cpp \
+			 HumanA.cpp \
+			 HumanB.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
