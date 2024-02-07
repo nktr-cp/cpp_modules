@@ -12,11 +12,11 @@ class Fixed {
 
 		Fixed(const int);
 
-		Fixed(const Fixed &);
+		Fixed(const Fixed&);
 
 		~Fixed();
 
-		Fixed& operator=(const Fixed &);
+		Fixed& operator=(const Fixed&);
 
 		int getRawBits(void) const;
 		void setRawBits(int const);
