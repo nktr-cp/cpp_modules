@@ -2,20 +2,20 @@
 #include "ClapTrap.h"
 
 ClapTrap::ClapTrap() : hit_points_(10), energy_point_(10), attack_damage_(0) {
-	std::cerr << "Default constructor called" << std::endl;
+	std::cerr << "ClapTrap default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name) : name_(name), hit_points_(10), energy_point_(10), attack_damage_(0) {
-	std::cerr << "Contructor called" << std::endl;
+ClapTrap::ClapTrap(std::string name) : name_(name), hit_points_(10), energy_point_(10), attack_damage_(0) {
+	std::cerr << "ClapTrap contructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
-	std::cerr << "Copy constructor called" << std::endl;
+	std::cerr << "ClapTrap copy constructor called" << std::endl;
 	*this = other;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
-	std::cerr << "Copy assignment called" << std::endl;
+	std::cerr << "ClapTrap Copy assignment called" << std::endl;
 	if (this == &other) {
 		return *this;
 	}
