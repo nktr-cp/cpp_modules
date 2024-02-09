@@ -1,5 +1,12 @@
 #include <iostream>
+#include <string>
 #include "PhoneBook.h"
+
+bool is_number(const std::string& s) {
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it)) it++;
+	return (!s.empty() && it == s.end());
+}
 
 static void _search(PhoneBook &phonebook) {
 	if (phonebook.get_entry_count() == 0) {
@@ -9,13 +16,18 @@ static void _search(PhoneBook &phonebook) {
 
 	phonebook.show();
 
-	int index;
+	std::string s_index;
 	std::cout << "Enter index: ";
-	std::cin >> index;
+	std::cin >> s_index;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if (std::cin.fail() || index >= phonebook.get_entry_count()) {
+	if (std::cin.fail() || !is_number(s_index)) {
 		std::cout << "Invalid input" << std::endl;
 		std::cin.clear();
+		return;
+	}
+	int index = std::atoi(s_index.c_str());
+	if (index >= phonebook.get_entry_count()) {
+		std::cout << "Given index is out of range" << std::endl;
 		return;
 	}
 	phonebook.show_contact(index);
