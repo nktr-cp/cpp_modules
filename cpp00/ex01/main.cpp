@@ -33,7 +33,7 @@ static void _search(PhoneBook &phonebook) {
 		exit(EXIT_FAILURE);
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if (std::cin.fail() || !_is_number(s_index)) {
+	if (std::cin.fail() || !_is_number(s_index)  ||  s_index.length() >= 3) {
 		std::cout << "Invalid input" << std::endl;
 		std::cin.clear();
 		return;
