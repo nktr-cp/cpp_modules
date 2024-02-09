@@ -15,6 +15,7 @@ static void _search(PhoneBook &phonebook) {
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	if (std::cin.fail() || index >= phonebook.get_entry_count()) {
 		std::cout << "Invalid input" << std::endl;
+		std::cin.clear();
 		return;
 	}
 	phonebook.show_contact(index);

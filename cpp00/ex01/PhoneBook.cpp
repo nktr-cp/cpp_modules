@@ -43,9 +43,9 @@ std::string PhoneBook::truncate_(const std::string &org) const {
 }
 
 void PhoneBook::show() const {
-	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "index" << '|';
-	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "first name" << '|';
-	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "last name" << '|';
+	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "index" << this->delimiter_;
+	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "first name" << this->delimiter_;
+	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "last name" << this->delimiter_;
 	std::cout << std::setw(PhoneBook::maximum_colum_width_) << "nickname" << std::endl;
 	for (int i=0; i<this->contact_count_; i++) {
 		std::cout << std::setw(PhoneBook::maximum_colum_width_) << i << '|';
