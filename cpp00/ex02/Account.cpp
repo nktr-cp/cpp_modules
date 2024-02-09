@@ -118,5 +118,5 @@ void Account::_displayTimestamp(void) {
 	if (min < 10) std::cout << 0;
 	std::cout << min;
 	if (sec < 10) std::cout << 0;
-	std::cout << sec << "]";
+	std::cout << sec << "] ";
 }
