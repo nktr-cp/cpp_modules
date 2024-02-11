@@ -1,5 +1,4 @@
 #include <iostream>
-#include <map>
 #include "Harl.h"
 
 void Harl::debug( void ) {
@@ -19,18 +18,15 @@ void Harl::error( void ) {
 }
 
 void Harl::complain( std::string level ) {
-	typedef void (Harl::*FuncPtr)();
-	std::map<std::string, FuncPtr> table;
+	void (Harl::*func[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string const levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	table["DEBUG"] = &Harl::debug;
-	table["INFO"] = &Harl::info;
-	table["WARNING"] = &Harl::warning;
-	table["ERROR"] = &Harl::error;
-
-	std::map<std::string, FuncPtr>::iterator itr = table.find(level);
-	if (itr != table.end()) {
-		(this->*(itr->second))();
-	} else {
-		std::cout << "Unknown complaint level: " << level << std::endl;
+	for (int i=0; i<4; i++) {
+		if (level == levels[i]) {
+			(this->*func[i])();
+			return;
+		}
 	}
+
+	std::cout << "Unknown complaint level." << std::endl;
 }
