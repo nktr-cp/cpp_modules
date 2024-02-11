@@ -14,6 +14,7 @@ int main() {
 	{
 		Zombie* zombie_ptr = newZombie("z2");
 		zombie_ptr->announce();
+		delete zombie_ptr;
 	}
 
 	randomChump("z3");
