@@ -17,4 +17,9 @@ int main() {
 	}
 
 	randomChump("z3");
+
+	Zombie* zm = newZombie("test");
+	zm->announce();
+
+	delete zm;
 }
