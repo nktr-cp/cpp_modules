@@ -21,9 +21,9 @@ class ClapTrap {
 
 		ClapTrap& operator=(const ClapTrap&);
 
-		virtual void attack(const std::string&);
-		virtual void takeDamage(unsigned int);
-		virtual void beReapaired(unsigned int);
+		void attack(const std::string&);
+		void takeDamage(unsigned int);
+		void beReapaired(unsigned int);
 };
 
 #endif // CLAP_TRAP_H_
