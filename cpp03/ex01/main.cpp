@@ -9,4 +9,6 @@ signed main() {
 	a.guardGate();
 	b.guardGate();
 	c.guardGate();
+
+	b.attack("test");
 }
