@@ -32,7 +32,7 @@ ClapTrap::~ClapTrap() {
 }
 
 void ClapTrap::attack(const std::string& target) {
-	if (this->energy_point_ == 0) {
+	if (this->energy_point_ == 0 || this->hit_points_ == 0) {
 		std::cout << "ClapTrap " << this->name_ << " has run out of energy points..." << std::endl;
 		return;
 	}
@@ -43,6 +43,7 @@ void ClapTrap::attack(const std::string& target) {
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (this->hit_points_ < amount) {
 		std::cout << "ClapTrap " << this->name_ << " died..." << std::endl;
+		this->hit_points_ = 0;
 		return;
 	}
 	this->hit_points_ -= amount;
@@ -50,7 +51,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beReapaired(unsigned int amount) {
-	if (this->energy_point_ == 0) {
+	if (this->energy_point_ == 0 || this->hit_points_ == 0) {
 		std::cout << "ClapTrap " << this->name_ << " has run out of energy points..." << std::endl;
 		return;
 	}
