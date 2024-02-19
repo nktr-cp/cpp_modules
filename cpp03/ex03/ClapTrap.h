@@ -19,7 +19,7 @@ class ClapTrap {
 		ClapTrap(std::string);
 
 		ClapTrap(const ClapTrap&);
-
+		
 		~ClapTrap();
 
 		ClapTrap& operator=(const ClapTrap&);
