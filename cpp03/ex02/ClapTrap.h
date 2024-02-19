@@ -13,7 +13,7 @@ class ClapTrap {
 	public:
 		ClapTrap();
 
-		ClapTrap(std::string);
+		ClapTrap(const std::string);
 
 		ClapTrap(const ClapTrap&);
 

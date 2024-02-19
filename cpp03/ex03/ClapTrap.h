@@ -6,9 +6,6 @@
 class ClapTrap {
 	protected:
 		std::string name_;
-		const static unsigned int clap_trap_initial_hit_points = 10;
-		const static unsigned int clap_trap_initial_energy_points = 10;
-		const static unsigned int clap_trap_initial_attack_damage = 0;
 		unsigned int hit_points_;
 		unsigned int energy_point_;
 		unsigned int attack_damage_;
@@ -16,10 +13,10 @@ class ClapTrap {
 	public:
 		ClapTrap();
 
-		ClapTrap(std::string);
+		ClapTrap(const std::string);
 
 		ClapTrap(const ClapTrap&);
-		
+
 		~ClapTrap();
 
 		ClapTrap& operator=(const ClapTrap&);

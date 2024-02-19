@@ -38,8 +38,8 @@ void ScavTrap::guardGate() {
 }
 
 void ScavTrap::attack(const std::string& target) {
-	if (this->energy_point_ == 0) {
-		std::cout << "ScavTrap " << this->name_ << " has run out of energy points..." << std::endl;
+	if (this->energy_point_ == 0 || this->energy_point_ == 0) {
+		std::cout << "ScavTrap " << this->name_ << " has run out of points..." << std::endl;
 		return;
 	}
 	this->energy_point_--;

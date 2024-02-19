@@ -33,7 +33,7 @@ ClapTrap::~ClapTrap() {
 
 void ClapTrap::attack(const std::string& target) {
 	if (this->energy_point_ == 0 || this->hit_points_ == 0) {
-		std::cout << "ClapTrap " << this->name_ << " has run out of energy points..." << std::endl;
+		std::cout << "ClapTrap " << this->name_ << " has run out of points..." << std::endl;
 		return;
 	}
 	this->energy_point_--;
@@ -52,7 +52,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 
 void ClapTrap::beReapaired(unsigned int amount) {
 	if (this->energy_point_ == 0 || this->hit_points_ == 0) {
-		std::cout << "ClapTrap " << this->name_ << " has run out of energy points..." << std::endl;
+		std::cout << "ClapTrap " << this->name_ << " has run out of points..." << std::endl;
 		return;
 	}
 	this->energy_point_--;

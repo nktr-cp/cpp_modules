@@ -2,20 +2,20 @@
 #include "ClapTrap.h"
 
 ClapTrap::ClapTrap() : hit_points_(10), energy_point_(10), attack_damage_(0) {
-	std::cerr << "ClapTrap default constructor called" << std::endl;
+	std::cerr << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : name_(name), hit_points_(10), energy_point_(10), attack_damage_(0) {
-	std::cerr << "ClapTrap contructor called" << std::endl;
+ClapTrap::ClapTrap(const std::string name) : name_(name), hit_points_(10), energy_point_(10), attack_damage_(0) {
+	std::cerr << "Contructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
-	std::cerr << "ClapTrap copy constructor called" << std::endl;
+	std::cerr << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
-	std::cerr << "ClapTrap Copy assignment called" << std::endl;
+	std::cerr << "Copy assignment called" << std::endl;
 	if (this == &other) {
 		return *this;
 	}
@@ -32,8 +32,8 @@ ClapTrap::~ClapTrap() {
 }
 
 void ClapTrap::attack(const std::string& target) {
-	if (this->energy_point_ == 0) {
-		std::cout << "ClapTrap " << this->name_ << " has run out of energy points..." << std::endl;
+	if (this->energy_point_ == 0 || this->hit_points_ == 0) {
+		std::cout << "ClapTrap " << this->name_ << " has run out of points..." << std::endl;
 		return;
 	}
 	this->energy_point_--;
@@ -43,6 +43,7 @@ void ClapTrap::attack(const std::string& target) {
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (this->hit_points_ < amount) {
 		std::cout << "ClapTrap " << this->name_ << " died..." << std::endl;
+		this->hit_points_ = 0;
 		return;
 	}
 	this->hit_points_ -= amount;
@@ -50,8 +51,8 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beReapaired(unsigned int amount) {
-	if (this->energy_point_ == 0) {
-		std::cout << "ClapTrap " << this->name_ << " has run out of energy points..." << std::endl;
+	if (this->energy_point_ == 0 || this->hit_points_ == 0) {
+		std::cout << "ClapTrap " << this->name_ << " has run out of points..." << std::endl;
 		return;
 	}
 	this->energy_point_--;
