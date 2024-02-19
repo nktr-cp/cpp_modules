@@ -20,7 +20,7 @@ class ClapTrap {
 
 		ClapTrap(const ClapTrap&);
 
-		virtual ~ClapTrap();
+		~ClapTrap();
 
 		ClapTrap& operator=(const ClapTrap&);
 
