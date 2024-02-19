@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Animal.h"
+#include "AAnimal.h"
 #include "Dog.h"
 #include "Cat.h"
 
@@ -8,17 +8,18 @@
 #include "WrongCat.h"
 
 int main() {
-	// const Animal* j = new Dog();
-	// const Animal* i = new Cat();
-	// const Animal d(*j);
-	// Animal c;
-	// c = *i;
-
 	const Dog* j = new Dog();
 	const Cat* i = new Cat();
 	const Dog d(*j);
 	Cat c;
 	c = *i;
+
+	// error
+	// const AAnimal* j = new Dog();
+	// const AAnimal* i = new Cat();
+	// const AAnimal d(*j);
+	// AAnimal c;
+	// c = *i;
 
 
 	std::cout << j->getType() << " " << std::endl;

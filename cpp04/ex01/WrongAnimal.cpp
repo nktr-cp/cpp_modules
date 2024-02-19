@@ -1,7 +1,7 @@
 #include <iostream>
 #include "WrongAnimal.h"
 
-WrongAnimal::WrongAnimal() : type_("animal") {
+WrongAnimal::WrongAnimal() : type_("Animal") {
 	std::cerr << "WrongAnimal class default constructor called." << std::endl;
 }
 
@@ -25,7 +25,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other) {
 }
 
 void WrongAnimal::makeSound() const {
-	std::cout << "Wrong animal makes sound..." << std::endl;
+	std::cout << "Wrong Animal makes sound..." << std::endl;
 }
 
 const std::string& WrongAnimal::getType() const {

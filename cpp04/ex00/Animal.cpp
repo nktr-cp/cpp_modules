@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Animal.h"
 
-Animal::Animal() : type_("animal") {
+Animal::Animal() : type_("Animal") {
 	std::cerr << "Animal class default constructor called." << std::endl;
 }
 
@@ -25,7 +25,7 @@ Animal& Animal::operator=(const Animal& other) {
 }
 
 void Animal::makeSound() const {
-	std::cout << "Unknown animal makes sound..." << std::endl;
+	std::cout << "Unknown Animal makes sound..." << std::endl;
 }
 
 const std::string& Animal::getType() const {

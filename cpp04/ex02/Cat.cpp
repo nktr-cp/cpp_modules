@@ -22,9 +22,9 @@ Cat& Cat::operator=(const Cat& other) {
 		return *this;
 	}
 
-	Animal::operator=(other);
+	AAnimal::operator=(other);
 	delete this->brain_;
-	this->brain_ = new Brain(*other.brain_);
+	this->brain_ = new Brain(*(other.brain_));
 	return *this;
 }
 
