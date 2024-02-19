@@ -35,5 +35,9 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 }
 
 void DiamondTrap::whoAmI() {
-	std::cout << "Mon nom est DiamondTrap " << this->name_ << std::endl;
+	std::cout << "My name is DiamondTrap " << this->name_ << "!!" << std::endl;
+}
+
+void DiamondTrap::attack(const std::string& target) {
+	ScavTrap::attack(target);
 }

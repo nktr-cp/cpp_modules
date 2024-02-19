@@ -8,7 +8,7 @@ SRC := main.cpp \
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -Wshadow
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

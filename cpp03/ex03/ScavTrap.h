@@ -3,7 +3,7 @@
 
 #include "ClapTrap.h"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : public virtual ClapTrap {
 	private:
 		const static unsigned int scav_trap_initial_hit_points = 100;
 		const static unsigned int scav_trap_initial_energy_points = 50;

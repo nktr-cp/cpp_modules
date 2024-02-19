@@ -1,12 +1,19 @@
+#include <iostream>
 #include "DiamondTrap.h"
 
 signed main() {
 	DiamondTrap a("test1");
-	FragTrap b(a);
-	FragTrap c;
+	DiamondTrap b(a);
+	DiamondTrap c;
 	c = b;
+	std::cerr << "++++++++++++++++++++++++++++++++++" << std::endl;
 
-	a.highFiveGuys();
-	b.highFiveGuys();
-	c.highFiveGuys();
+	a.whoAmI();
+	b.whoAmI();
+	c.whoAmI();
+
+	std::cerr << "++++++++++++++++++++++++++++++++++" << std::endl;
+	a.attack("test of a");
+	b.attack("test of b");
+	c.attack("test of c");
 }

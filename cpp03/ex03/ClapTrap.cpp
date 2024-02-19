@@ -28,7 +28,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cerr << "Destrutor called" << std::endl;
+	std::cerr << "ClapTrap destrutor called" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target) {
