@@ -15,7 +15,7 @@ Ice& Ice::operator=(const Ice& other) {
 	// pdf: While assigning a Materia to another,
 	// copying the type doesn’t makesense.
 
-	// this does not make sence?
+	// does this not make sence?
 	AMateria::operator=(other);
 	return *this;
 }
