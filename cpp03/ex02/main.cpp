@@ -9,4 +9,8 @@ signed main() {
 	a.highFiveGuys();
 	b.highFiveGuys();
 	c.highFiveGuys();
+
+	a.attack("tmp");
+	b.beReapaired(42);
+	c.takeDamage(42);
 }

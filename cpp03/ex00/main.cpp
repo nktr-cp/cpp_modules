@@ -11,8 +11,8 @@ signed main() {
 	a.takeDamage(42);
 
 	b.attack("tmp");
-	b.beReapaired(123456789);
 	b.takeDamage(42);
+	b.attack("tmp");
 
 	c.attack("tmp");
 	c.attack("tmp");
@@ -26,4 +26,5 @@ signed main() {
 	c.attack("tmp");
 	c.beReapaired(123456789);
 	c.takeDamage(42);
+
 }

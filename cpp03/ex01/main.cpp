@@ -10,5 +10,7 @@ signed main() {
 	b.guardGate();
 	c.guardGate();
 
+	a.beReapaired(42);
 	b.attack("test");
+	c.takeDamage(100);
 }
