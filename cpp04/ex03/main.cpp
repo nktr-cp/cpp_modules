@@ -45,7 +45,7 @@ signed main() {
 		delete m2;
 
 		ICharacter* me = new Character("me");
-		// ch.use(1,*me);
+		ch.use(1,*me);
 		ch.use(2,*me);
 		ch.use(3,*me);
 		ch.use(4,*me);
