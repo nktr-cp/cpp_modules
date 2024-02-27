@@ -25,29 +25,31 @@ signed main() {
 		delete src;
 	}
 
-	Character ch("alice");
-	Ice *m1 = new Ice();
-	Ice *m2 = new Ice();
-	Cure *m3 = new Cure();
-	Cure *m4 = new Cure();
-	Ice *m5 = new Ice();
+	{
+		Character ch("alice");
+		Ice *m1 = new Ice();
+		Ice *m2 = new Ice();
+		Cure *m3 = new Cure();
+		Cure *m4 = new Cure();
+		Ice *m5 = new Ice();
 
-	ch.equip(m1);
-	ch.equip(m2);
-	ch.equip(m3);
-	ch.equip(m4);
-	// fails
-	ch.equip(m5);
-	delete m5;
+		ch.equip(m1);
+		ch.equip(m2);
+		ch.equip(m3);
+		ch.equip(m4);
+		// fails
+		ch.equip(m5);
+		delete m5;
 
-	ch.unequip(1);
-	delete m2;
+		ch.unequip(1);
+		delete m2;
 
-	ICharacter* me = new Character("me");
-	// ch.use(1,*me);
-	ch.use(2,*me);
-	ch.use(3,*me);
-	ch.use(4,*me);
+		ICharacter* me = new Character("me");
+		// ch.use(1,*me);
+		ch.use(2,*me);
+		ch.use(3,*me);
+		ch.use(4,*me);
 
-	delete me;
+		delete me;
+	}
 }
