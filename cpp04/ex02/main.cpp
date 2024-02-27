@@ -15,11 +15,11 @@ int main() {
 	c = *i;
 
 	// error
-	// const AAnimal* j = new Dog();
-	// const AAnimal* i = new Cat();
-	// const AAnimal d(*j);
-	// AAnimal c;
-	// c = *i;
+	// const AAnimal* aj = new Dog();
+	// const AAnimal* ai = new Cat();
+	// const AAnimal ad(*j);
+	// AAnimal ac;
+	// ac = *ai;
 
 
 	std::cout << j->getType() << " " << std::endl;
