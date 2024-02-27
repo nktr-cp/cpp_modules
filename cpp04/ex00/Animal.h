@@ -1,5 +1,5 @@
-#ifndef Animal_H_
-#define Animal_H_
+#ifndef ANIMAL_H_
+#define ANIMAL_H_
 
 #include <string>
 
@@ -20,4 +20,4 @@ class Animal {
 		const std::string& getType() const;
 };
 
-#endif // Animal_H_
+#endif // ANIMAL_H_

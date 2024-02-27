@@ -23,7 +23,7 @@ int main() {
 
 	const WrongAnimal* wrong_meta = new WrongAnimal();
 	const WrongCat* wrong_cat = new WrongCat();
-	const WrongAnimal* wrong_i = new WrongAnimal();
+	const WrongAnimal* wrong_i = new WrongCat();
 	std::cout << wrong_meta->getType() << " " << std::endl;
 	std::cout << wrong_cat->getType() << " " << std::endl;
 	std::cout << wrong_i->getType() << " " << std::endl;
