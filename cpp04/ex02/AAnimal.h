@@ -12,7 +12,7 @@ class AAnimal {
 
 		AAnimal(const AAnimal&);
 
-		virtual ~AAnimal() = 0;
+		virtual ~AAnimal();
 
 		AAnimal& operator=(const AAnimal&);
 

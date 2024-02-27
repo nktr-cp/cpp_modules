@@ -10,6 +10,10 @@ AAnimal::AAnimal(const AAnimal& other) {
 	*this = other;
 }
 
+AAnimal::~AAnimal() {
+	std::cerr << "AAnimal class destructor called." << std::endl;
+}
+
 AAnimal& AAnimal::operator=(const AAnimal& other) {
 	std::cerr << "AAnimal class copy assignment called." << std::endl;
 	if (this == &other) {
