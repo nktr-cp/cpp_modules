@@ -12,7 +12,7 @@ class Dog : public Animal {
 
 		Dog(const Dog&);
 
-		virtual ~Dog();
+		~Dog();
 
 		Dog& operator=(const Dog&);
 		

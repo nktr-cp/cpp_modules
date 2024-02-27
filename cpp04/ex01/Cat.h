@@ -12,7 +12,7 @@ class Cat : public Animal {
 
 		Cat(const Cat&);
 
-		virtual ~Cat();
+		~Cat();
 
 		Cat& operator=(const Cat&);
 		
