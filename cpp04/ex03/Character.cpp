@@ -8,7 +8,7 @@ Character::Character() : name_("") {
 	}
 }
 
-Character::Character(const std::string& name) : name_(name + "_copy") {
+Character::Character(const std::string& name) : name_(name) {
 	std::cerr << "Character constructor called" << std::endl;
 	for (int i=0; i<4; i++) {
 		this->inventory_[i] = 0;
