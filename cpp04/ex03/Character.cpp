@@ -8,7 +8,7 @@ Character::Character() : name_("") {
 	}
 }
 
-Character::Character(const std::string& name) : name_(name) {
+Character::Character(const std::string& name) : name_(name + "_copy") {
 	std::cerr << "Character constructor called" << std::endl;
 	for (int i=0; i<4; i++) {
 		this->inventory_[i] = 0;
@@ -54,12 +54,13 @@ std::string const& Character::getName() const {
 }
 
 void Character::equip(AMateria* m) {
-	for (int i=0; i<3; i++) {
+	for (int i=0; i<4; i++) {
 		if (this->inventory_[i] == 0) {
 			this->inventory_[i] = m;
 			return;
 		}
 	}
+	std::cout << "Cannot equip more than four materias" << std::endl;
 }
 
 void Character::unequip(int idx) {
@@ -74,6 +75,10 @@ void Character::use(int idx, ICharacter& target) {
 	if (idx < 0 || idx >= 4) {
 		std::cout << "Index out of range" << std::endl;
 	} else {
-		this->inventory_[idx]->use(target);
+		if (this->inventory_[idx]) {
+			this->inventory_[idx]->use(target);
+		} else {
+			std::cout << idx << "th materia not equipped yet" << std::endl;
+		}
 	}
 }
