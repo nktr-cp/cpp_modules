@@ -13,26 +13,25 @@ Bureaucrat::Bureaucrat(const std::string name,unsigned int grade)
 		grade_(grade)
 {
 	std::cerr << "Bureaucrat class constructor called" << std::endl;
-	if (grade < Bureaucrat::maxgrade) {
-		throw GradeTooLowException();
-	} else if (grade > Bureaucrat::mingrade) {
+	if (grade < Bureaucrat::maxgrade_) {
 		throw GradeTooHighException();
+	} else if (grade > Bureaucrat::mingrade_) {
+		throw GradeTooLowException();
 	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) {
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+: name_(other.getName())
+{
 	std::cerr << "Bureaucrat class copy constructor called" << std::endl;
 	*this = other;
 }
 
-const Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	std::cerr << "Bureaucrat class copy assignment called" << std::endl;
 	if (this == &other) {
 		return *this;
 	}
-
-	// this attribute is constant
-	// this->name_ = other.name_;
 
 	this->grade_ = other.grade_;
 	
@@ -52,14 +51,14 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 void Bureaucrat::incrementGrade() {
-	if (this->grade_ == Bureaucrat::maxgrade) {
+	if (this->grade_ == Bureaucrat::maxgrade_) {
 		throw GradeTooHighException();
 	}
 	--this->grade_;
 }
 
 void Bureaucrat::decrementGrade() {
-	if (this->grade_ == Bureaucrat::mingrade) {
+	if (this->grade_ == Bureaucrat::mingrade_) {
 		throw GradeTooLowException();
 	}
 	++this->grade_;

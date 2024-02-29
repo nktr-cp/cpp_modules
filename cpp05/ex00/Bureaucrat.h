@@ -5,8 +5,8 @@
 
 class Bureaucrat {
 	private:
-		static const unsigned int maxgrade = 1;
-		static const unsigned int mingrade = 150;
+		static const unsigned int maxgrade_ = 1;
+		static const unsigned int mingrade_ = 150;
 
 		const std::string name_;
 		unsigned int grade_;
@@ -18,7 +18,7 @@ class Bureaucrat {
 
 		Bureaucrat(const Bureaucrat&);
 
-		const Bureaucrat& operator=(const Bureaucrat&);
+		Bureaucrat& operator=(const Bureaucrat&);
 
 		~Bureaucrat();
 
@@ -32,9 +32,6 @@ class Bureaucrat {
 				virtual const char* what() const throw();
 		};
 
-		// note:
-		// Since grade 1 is the highest one and 150 the lowest,
-		// incrementing a grade 3 should give a grade 2 to the bureaucrat.
 		void incrementGrade();
 		void decrementGrade();
 		const std::string& getName() const;
