@@ -8,7 +8,7 @@ signed main(int ac, char **av) {
 	}
 	
 	try {
-		ScalarConverter converter(av[1]);
+		ScalarConverter::convert(av[1]); // returns result
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}

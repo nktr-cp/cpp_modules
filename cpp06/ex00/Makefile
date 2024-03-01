@@ -1,10 +1,11 @@
 NAME := convert
 SRC := main.cpp \
+			 Converter.cpp \
 			 ScalarConverter.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
