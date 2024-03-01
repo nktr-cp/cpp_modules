@@ -2,8 +2,10 @@
 #define SCALAR_CONVERTER_H_
 
 #include <string>
+#include <cassert>
 
 typedef enum {
+	SPEC_T,
 	INT_T,
 	CHAR_T,
 	FLOAT_T,
@@ -27,23 +29,27 @@ class ScalarConverter {
 
 		ScalarConverter(const ScalarConverter&);
 
-		ScalarConverter& operator=(const ScalarConverter&);
+		ScalarConverter &operator=(const ScalarConverter&);
 
 		~ScalarConverter();
 
 		void judgeType();
+		void convert();
 		void convertChar();
 		void convertInt();
 		void convertFloat();
 		void convertDouble();
 		void printResult() const;
 
-		e_type getType() const;
-		const std::string& getInput() const;
-		char getChar() const;
-		int getInt() const;
-		float getFloat() const;
-		double getDouble() const;
+		class InvalidInput : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class IntOverflowDetected : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
 #endif // SCALAR_CONVERTER_H_
