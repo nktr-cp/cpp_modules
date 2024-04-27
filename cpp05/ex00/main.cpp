@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Bureaucrat.h"
+#include "Bureaucrat.hpp"
 
 int main() {
 	// normal test
