@@ -77,6 +77,10 @@ unsigned int AForm::getExecGrade() const {
 	return this->exec_grade_;
 }
 
+std::string AForm::getTarget() const {
+	return this->target_;
+}
+
 void AForm::beSigned(const Bureaucrat& b) {
 	if (this->is_signed_) {
 		throw AFormAlreadySignedException();

@@ -1,23 +1,25 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-: AForm("default",  ShrubberyCreationForm::GRADE_TO_SIGN, ShrubberyCreationForm::GRADE_TO_EXEC)
-{}
+: AForm("ShrubberyCreationForm",  ShrubberyCreationForm::GRADE_TO_SIGN, ShrubberyCreationForm::GRADE_TO_EXEC)
+{
+	this->target_ = "default";
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-: AForm(target, ShrubberyCreationForm::GRADE_TO_SIGN, ShrubberyCreationForm::GRADE_TO_EXEC)
-{}
+: AForm("ShrubberyCreationForm", ShrubberyCreationForm::GRADE_TO_SIGN, ShrubberyCreationForm::GRADE_TO_EXEC)
+{
+	this->target_ = target;
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-: AForm(other.getName(), ShrubberyCreationForm::GRADE_TO_SIGN, ShrubberyCreationForm::GRADE_TO_EXEC)
+: AForm("ShrubberyCreationForm", ShrubberyCreationForm::GRADE_TO_SIGN, ShrubberyCreationForm::GRADE_TO_EXEC)
 {
 	*this = other;
 }
 
 ShrubberyCreationForm ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
-	// name is constant and other values are the same
-	// therefore, nothing to copy from other form
-	(void)other;
+	this->target_ = other.getTarget();
 	return *this;
 }
 

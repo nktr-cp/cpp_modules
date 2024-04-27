@@ -1,15 +1,19 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-: AForm("default",  PresidentialPardonForm::GRADE_TO_SIGN, PresidentialPardonForm::GRADE_TO_EXEC)
-{}
+: AForm("PresidentialPardonForm",  PresidentialPardonForm::GRADE_TO_SIGN, PresidentialPardonForm::GRADE_TO_EXEC)
+{
+	target_ = "default";
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-: AForm(target, PresidentialPardonForm::GRADE_TO_SIGN, PresidentialPardonForm::GRADE_TO_EXEC)
-{}
+: AForm("PresidentialPardonForm", PresidentialPardonForm::GRADE_TO_SIGN, PresidentialPardonForm::GRADE_TO_EXEC)
+{
+	target_ = target;
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
-: AForm(other.getName(), PresidentialPardonForm::GRADE_TO_SIGN, PresidentialPardonForm::GRADE_TO_EXEC)
+: AForm("PresidentialPardonForm", PresidentialPardonForm::GRADE_TO_SIGN, PresidentialPardonForm::GRADE_TO_EXEC)
 {
 	*this = other;
 }
@@ -17,7 +21,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 PresidentialPardonForm PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
 	// name is constant and other values are the same
 	// therefore, nothing to copy from other form
-	(void)other;
+	this->target_ = other.target_;
 	return *this;
 }
 

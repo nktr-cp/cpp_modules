@@ -15,6 +15,9 @@ class AForm {
 		bool is_signed_;
 		const unsigned int sign_grade_;
 		const unsigned int exec_grade_;
+	
+	protected:
+		std::string target_;
 
 	public:
 		AForm();
@@ -48,6 +51,8 @@ class AForm {
 		bool getIsSigned() const;
 		unsigned int getSignGrade() const;
 		unsigned int getExecGrade() const;
+
+		std::string getTarget() const;
 
 		void beSigned(const Bureaucrat&);
 

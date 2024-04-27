@@ -1,15 +1,19 @@
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm()
-: AForm("default",  RobotomyRequestForm::GRADE_TO_SIGN, RobotomyRequestForm::GRADE_TO_EXEC)
-{}
+: AForm("RobotomyRequestForm",  RobotomyRequestForm::GRADE_TO_SIGN, RobotomyRequestForm::GRADE_TO_EXEC)
+{
+	target_ = "default";
+}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-: AForm(target, RobotomyRequestForm::GRADE_TO_SIGN, RobotomyRequestForm::GRADE_TO_EXEC)
-{}
+: AForm("RobotomyRequestForm", RobotomyRequestForm::GRADE_TO_SIGN, RobotomyRequestForm::GRADE_TO_EXEC)
+{
+	target_ = target;
+}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-: AForm(other.getName(), RobotomyRequestForm::GRADE_TO_SIGN, RobotomyRequestForm::GRADE_TO_EXEC)
+: AForm("RobotomyRequestForm", RobotomyRequestForm::GRADE_TO_SIGN, RobotomyRequestForm::GRADE_TO_EXEC)
 {
 	*this = other;
 }
@@ -17,7 +21,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 RobotomyRequestForm RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
 	// name is constant and other values are the same
 	// therefore, nothing to copy from other form
-	(void)other;
+	this->target_ = other.getTarget();
 	return *this;
 }
 
