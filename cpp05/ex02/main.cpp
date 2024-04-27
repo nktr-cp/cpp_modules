@@ -28,6 +28,7 @@ signed main(void) {
 			exec_idx = 3;
 		}
 
+		try{
 		switch(exec_idx) {
 			case 1:
 				bureauro3.executeForm(ppf);
@@ -40,6 +41,9 @@ signed main(void) {
 				break;
 			default:
 				std::cout << "Cannot execute because form " << ppf.getName() << " is not signed" << std::endl;
+		}
+		} catch (std::exception &e) {
+			std::cerr << "Error: " << e.what() << std::endl;
 		}
 	}
 
@@ -65,18 +69,22 @@ signed main(void) {
 			exec_idx = 3;
 		}
 
-		switch(exec_idx) {
-			case 1:
-				bureauro3.executeForm(rrf);
-				break;
-			case 2:
-				bureauro2.executeForm(rrf);
-				break;
-			case 3:
-				bureauro1.executeForm(rrf);
-				break;
-			default:
-				std::cout << "Cannot execute because form " << rrf.getName() << " is not signed" << std::endl;
+		try {
+			switch(exec_idx) {
+				case 1:
+					bureauro3.executeForm(rrf);
+					break;
+				case 2:
+					bureauro2.executeForm(rrf);
+					break;
+				case 3:
+					bureauro1.executeForm(rrf);
+					break;
+				default:
+					std::cout << "Cannot execute because form " << rrf.getName() << " is not signed" << std::endl;
+			}
+		} catch (std::exception &e) {
+			std::cerr << "Error: " << e.what() << std::endl;
 		}
 	}
 
@@ -102,18 +110,22 @@ signed main(void) {
 			exec_idx = 3;
 		}
 
-		switch(exec_idx) {
-			case 1:
-				bureauro3.executeForm(scf);
-				break;
-			case 2:
-				bureauro2.executeForm(scf);
-				break;
-			case 3:
-				bureauro1.executeForm(scf);
-				break;
-			default:
-				std::cout << "Cannot execute because form " << scf.getName() << " is not signed" << std::endl;
+		try {
+			switch(exec_idx) {
+				case 1:
+					bureauro3.executeForm(scf);
+					break;
+				case 2:
+					bureauro2.executeForm(scf);
+					break;
+				case 3:
+					bureauro1.executeForm(scf);
+					break;
+				default:
+					std::cout << "Cannot execute because form " << scf.getName() << " is not signed" << std::endl;
+			}
+		} catch (std::exception &e) {
+			std::cerr << "Error: " << e.what() << std::endl;
 		}
 	}
 
@@ -139,18 +151,22 @@ signed main(void) {
 			exec_idx = 3;
 		}
 
-		switch(exec_idx) {
-			case 1:
-				bureauro3.executeForm(ppf);
-				break;
-			case 2:
-				bureauro2.executeForm(ppf);
-				break;
-			case 3:
-				bureauro1.executeForm(ppf);
-				break;
-			default:
-				std::cout << "Cannot execute because form " << ppf.getName() << " is not signed" << std::endl;
+		try {
+			switch(exec_idx) {
+				case 1:
+					bureauro3.executeForm(ppf);
+					break;
+				case 2:
+					bureauro2.executeForm(ppf);
+					break;
+				case 3:
+					bureauro1.executeForm(ppf);
+					break;
+				default:
+					std::cout << "Cannot execute because form " << ppf.getName() << " is not signed" << std::endl;
+			}
+		} catch (std::exception &e) {
+			std::cerr << "Error: " << e.what() << std::endl;
 		}
 	}
 }
