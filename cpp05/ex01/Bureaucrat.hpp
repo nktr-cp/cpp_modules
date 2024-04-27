@@ -1,5 +1,5 @@
-#ifndef BUREAUCRAT_H_
-#define BUREAUCRAT_H_
+#ifndef BUREAUCRAT_HPP_
+#define BUREAUCRAT_HPP_
 
 #include <string>
 
@@ -7,21 +7,17 @@ class Form;
 
 class Bureaucrat {
 	private:
-		static const unsigned int maxgrade_ = 1;
-		static const unsigned int mingrade_ = 150;
+		static const unsigned int MAXGRADE = 1;
+		static const unsigned int MINGRADE = 150;
 
 		const std::string name_;
 		unsigned int grade_;
 
 	public:
 		Bureaucrat();
-
 		Bureaucrat(const std::string, unsigned int);
-
 		Bureaucrat(const Bureaucrat&);
-
 		Bureaucrat& operator=(const Bureaucrat&);
-
 		~Bureaucrat();
 
 		class GradeTooHighException : public std::exception {
@@ -47,4 +43,4 @@ class Bureaucrat {
 
 std::ostream& operator<<(std::ostream&, Bureaucrat&);
 
-#endif // BUREAUCRAT_H_
+#endif // BUREAUCRAT_HPP_

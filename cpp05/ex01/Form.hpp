@@ -1,13 +1,14 @@
-#ifndef FORM_H_
-#define FORM_H_
+#ifndef FORM_HPP_
+#define FORM_HPP_
 
-#include "Bureaucrat.h"
+#include "Bureaucrat.hpp"
 #include <string>
+#include <iomanip>
 
 class Form {
 	private:
-		static const unsigned int maxgrade_ = 1;
-		static const unsigned int mingrade_ = 150;
+		static const unsigned int MAXGRADE = 1;
+		static const unsigned int MINGRADE = 150;
 
 		const std::string name_;
 		bool is_signed_;
@@ -16,28 +17,24 @@ class Form {
 
 	public:
 		Form();
-
 		Form(const std::string, unsigned int sign_grade, unsigned int exec_grade);
-
 		Form(const Form&);
-
 		Form& operator=(const Form&);
-
 		~Form();
 
 		class GradeTooHighException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		class FormAlreadySignedException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		const std::string& getName() const;
@@ -50,4 +47,4 @@ class Form {
 
 std::ostream& operator<<(std::ostream&, Form&);
 
-#endif // FORM_H_
+#endif // FORM_HPP_

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Bureaucrat.h"
-#include "Form.h"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 signed main() {
 	// normal test
@@ -11,7 +11,7 @@ signed main() {
 		std::cout << b << std::endl;
 		std::cout << f << std::endl;
 		b.signForm(f);
-		std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";	
+		// std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";	
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
@@ -22,7 +22,7 @@ signed main() {
 		Bureaucrat b("bureauro", 42);
 		Form f("test", 12, 12);
 		b.signForm(f);
-		std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";	
+		// std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";	
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
@@ -31,7 +31,8 @@ signed main() {
 	std::cout << "Test3" << std::endl;
 	try {
 		Form f("test", 0, 42);
-		std::cout << "\033[31m" << "Should not reach here" << std::endl << "\033[0m";		
+		std::cout << f << std::endl;
+		// std::cout << "\033[31m" << "Should not reach here" << std::endl << "\033[0m";		
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
@@ -40,7 +41,8 @@ signed main() {
 	std::cout << "Test4" << std::endl;
 	try {
 		Form f("test", 1234, 42);
-		std::cout << "\033[31m" << "Should not reach here" << std::endl << "\033[0m";		
+		std::cout << f << std::endl;
+		// std::cout << "\033[31m" << "Should not reach here" << std::endl << "\033[0m";		
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
@@ -49,7 +51,8 @@ signed main() {
 	std::cout << "Test5" << std::endl;
 	try {
 		Form f("test", 42, 0);
-		std::cout << "\033[31m" << "Should not reach here" << std::endl << "\033[0m";		
+		std::cout << f << std::endl;
+		// std::cout << "\033[31m" << "Should not reach here" << std::endl << "\033[0m";		
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
@@ -58,7 +61,8 @@ signed main() {
 	std::cout << "Test6" << std::endl;
 	try {
 		Form f("test", 42, 150);
-		std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";			
+		std::cout << f << std::endl;
+		// std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";			
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
@@ -67,7 +71,8 @@ signed main() {
 	std::cout << "Test7" << std::endl;
 	try {
 		Form f("test", 42, 151);
-		std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";	
+		std::cout << f << std::endl;
+		// std::cout << "\033[32m" << "Should reach here" << std::endl << "\033[0m";	
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
