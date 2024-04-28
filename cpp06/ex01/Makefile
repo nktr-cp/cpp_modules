@@ -1,6 +1,7 @@
 NAME := serializer
 SRC := main.cpp \
-			 Serializer.cpp
+			 Serializer.cpp \
+			 Data.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++

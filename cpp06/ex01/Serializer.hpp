@@ -1,17 +1,14 @@
-#ifndef SERIALIZER_H_
-#define SERIALIZER_H_
+#ifndef SERIALIZER_HPP_
+#define SERIALIZER_HPP_
 
-#include "Data.h"
+#include "Data.hpp"
 #include <cstdint>
 
 class Serializer {
 	private:
 		Serializer();
-
 		Serializer(const Serializer&);
-
 		Serializer& operator=(const Serializer&);
-
 		~Serializer();
 
 	public:
@@ -19,4 +16,4 @@ class Serializer {
 		static Data* deserialize(uintptr_t);
 };
 
-#endif // SERIALIZER_H_
+#endif // SERIALIZER_HPP_

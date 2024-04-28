@@ -1,5 +1,5 @@
-#ifndef _CONVERTER_H_
-#define _CONVERTER_H_
+#ifndef _CONVERTER_HPP_
+#define _CONVERTER_HPP_
 
 #include <string>
 #include <cassert>
@@ -59,4 +59,4 @@ class Converter {
 		double getDouble() const;
 };
 
-#endif // _CONVERTER_H_
+#endif // _CONVERTER_HPP_

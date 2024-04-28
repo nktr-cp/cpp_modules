@@ -1,5 +1,5 @@
-#ifndef SCALAR_CONVERTER_H_
-#define SCALAR_CONVERTER_H_
+#ifndef SCALAR_CONVERTER_HPP_
+#define SCALAR_CONVERTER_HPP_
 
 #include "Converter.hpp"
 
@@ -24,4 +24,4 @@ class ScalarConverter {
 		static Result convert(const std::string);
 };
 
-#endif // SCALAR_CONVERTER_H_
+#endif // SCALAR_CONVERTER_HPP_
