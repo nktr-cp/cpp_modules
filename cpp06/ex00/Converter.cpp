@@ -1,15 +1,12 @@
 #include <iostream>
-#include "Converter.h"
+#include "Converter.hpp"
 
 // -----------------------------------------------
-Converter::Converter() {
-	std::cerr << "Converter default constructor called" << std::endl;
-}
+Converter::Converter() {}
 
 Converter::Converter(const std::string input)
 :	input_(input)
 {
-	std::cerr << "Converter constructor called" << std::endl;
 	this->judgeType();
 	this->convert();
 	this->printResult();
@@ -18,13 +15,11 @@ Converter::Converter(const std::string input)
 Converter::Converter(const Converter& other)
 :	input_(other.input_)
 {
-	std::cerr << "Converter copy constructor called" << std::endl;
 	*this = other;
 	this->printResult();
 }
 
 Converter& Converter::operator=(const Converter& other) {
-	std::cerr << "Converter copy assignment called" << std::endl;
 	if (this == &other) {
 		return *this;
 	}
@@ -38,9 +33,7 @@ Converter& Converter::operator=(const Converter& other) {
 	return *this;
 }
 
-Converter::~Converter() {
-	std::cerr << "Converter destructor called" << std::endl;
-}
+Converter::~Converter() {}
 
 // -----------------------------------------------
 void Converter::judgeType() {

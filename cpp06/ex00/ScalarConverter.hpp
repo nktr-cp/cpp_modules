@@ -1,7 +1,7 @@
 #ifndef SCALAR_CONVERTER_H_
 #define SCALAR_CONVERTER_H_
 
-#include "Converter.h"
+#include "Converter.hpp"
 
 class ScalarConverter {
 	private:
