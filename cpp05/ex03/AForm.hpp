@@ -19,8 +19,8 @@ class AForm {
 	protected:
 		std::string target_;
 
-	public:
 		AForm();
+	public:
 		AForm(const std::string, unsigned int sign_grade, unsigned int exec_grade);
 		AForm(const AForm&);
 		AForm& operator=(const AForm&);
