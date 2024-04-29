@@ -3,7 +3,7 @@ SRC := main.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address,undefined
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -I. # -fsanitize=address,undefined
 
 all: $(NAME)
 

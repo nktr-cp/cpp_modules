@@ -11,8 +11,8 @@ class Array {
 	public:
 		Array();
 		Array(const unsigned int);
+		Array& operator=(const Array&);
 		Array(const Array&);
-		Array operator=(const Array&);
 		~Array();
 
 		T& operator[](const unsigned int) const;

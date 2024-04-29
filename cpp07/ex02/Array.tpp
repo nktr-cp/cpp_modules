@@ -1,6 +1,6 @@
 template<class T>
 void Array<T>::rebuild_(const unsigned int size) {
-	T* new_data = new T[size]();
+	T* new_data = new T[size];
 	delete[] data_;
 	data_ = new_data;
 	size_ = size;
@@ -14,20 +14,12 @@ Array<T>::Array()
 
 template<class T>
 Array<T>::Array(const unsigned int n)
-: data_(new T[n]()),
+: data_(new T[n]),
 	size_(n)
 {}
 
 template<class T>
-Array<T>::Array(const Array<T>& other)
-: data_(NULL),
-	size_(0)
-{
-	*this = other;
-}
-
-template<class T>
-Array<T> Array<T>::operator=(const Array<T>& other) {
+Array<T>& Array<T>::operator=(const Array<T>& other) {
 	if (this == &other) {
 		return *this;
 	}
@@ -37,6 +29,14 @@ Array<T> Array<T>::operator=(const Array<T>& other) {
 		data_[i] = other[i];
 	}
 	return *this;
+}
+
+template<class T>
+Array<T>::Array(const Array<T>& other)
+: data_(NULL),
+	size_(0)
+{
+	*this = other;
 }
 
 template<class T>
