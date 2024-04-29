@@ -31,7 +31,7 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const {
 	if (!getIsSigned()) {
 		throw AFormNotYetSignedExecption();
 	} else if (executor.getGrade() > RobotomyRequestForm::getExecGrade()) {
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 	}
 	// drilling noises
 	std::cout << "Rrrrrrrrrrrrrrrrrrrrr......" << std::endl;
