@@ -29,7 +29,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
 	if (!getIsSigned()) {
 		throw AFormNotYetSignedExecption();
 	} else if (executor.getGrade() > ShrubberyCreationForm::GRADE_TO_EXEC) {
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 	}
 	
 	std::string fileName = executor.getName() + "_shrubbery";
