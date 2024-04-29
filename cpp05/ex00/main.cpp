@@ -33,7 +33,7 @@ int main() {
 	std::cout << "++++++++++++++++++++++++++" << std::endl;
 	std::cout << "Test3" << std::endl;
 	try {
-		// initialize with grade less than the miminum value
+		// initialize with grade less than the minimum value
 		Bureaucrat a("tmp", 151);
 		std::cout << "Should not reach here!" << std::endl;
 	} catch(std::exception &e) {
