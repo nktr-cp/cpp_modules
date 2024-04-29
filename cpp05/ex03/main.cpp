@@ -13,7 +13,7 @@ signed main(void) {
 				bureauro.executeForm(*form);
 				delete form;
 			}
-		} catch (std::exception& e) {
+		} catch (std::bad_alloc& e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
@@ -28,7 +28,7 @@ signed main(void) {
 				bureauro.executeForm(*form);
 				delete form;
 			}
-		} catch (std::exception &e) {
+		} catch (std::bad_alloc &e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
@@ -43,7 +43,7 @@ signed main(void) {
 				bureauro.executeForm(*form);
 				delete form;
 			}
-		} catch (std::exception &e) {
+		} catch (std::bad_alloc &e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
@@ -58,7 +58,7 @@ signed main(void) {
 				bureauro.executeForm(*form);
 				delete form;
 			}
-		} catch (std::exception &e) {
+		} catch (std::bad_alloc &e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
