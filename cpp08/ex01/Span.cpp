@@ -27,7 +27,7 @@ void Span::addNumber(const int number) {
 	if (this->getSize() >= this->getCapacity()) {
 		std::stringstream ss;
 		ss << this->getCapacity();
-		std::string err_msg = "Cannot store more than " + ss.str() + " integars!";
+		std::string err_msg = "Cannot store more than " + ss.str() + " integers!";
 		throw std::runtime_error(err_msg);
 	}
 	numbers_.insert(number);
@@ -35,7 +35,7 @@ void Span::addNumber(const int number) {
 
 unsigned int Span::shortestSpan() const {
 	if (numbers_.size() <= 1) {
-		throw std::runtime_error("Number of elements are not big enough!");
+		throw std::runtime_error("Number of elements is not big enough!");
 	}
 
 	long minspan = LONG_MAX;

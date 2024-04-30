@@ -22,7 +22,7 @@ class Span {
 			if (this->getSize() + std::distance(begin, end) > this->getCapacity()) {
 				std::stringstream ss;
 				ss << this->getCapacity();
-				std::string err_msg = "Cannot store more than " + ss.str() + " integars!";
+				std::string err_msg = "Cannot store more than " + ss.str() + " integers!";
 				throw std::runtime_error(err_msg);
 			}
 
