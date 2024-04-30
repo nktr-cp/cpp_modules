@@ -7,8 +7,6 @@ int main() {
 	try {
 		Bureaucrat a("test", 123);
 		Bureaucrat b(a);
-		Bureaucrat c;
-		c = b;
 
 		a.incrementGrade();
 		std::cout << a << std::endl;
