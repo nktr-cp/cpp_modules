@@ -52,7 +52,7 @@ signed main(void) {
 		RobotomyRequestForm rrf("rrf_test");
 
 		Bureaucrat bureauro1("bureauro", 1);
-		Bureaucrat bureauro2("bureauro", 50);
+		Bureaucrat bureauro2("bureauro", 40);
 		Bureaucrat bureauro3("bureauro", 100);
 
 		int exec_idx = -1;
