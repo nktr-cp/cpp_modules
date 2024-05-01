@@ -234,7 +234,7 @@ void Converter::printResult() const {
 
 	// int
 	if (type_ == SPEC_T) {
-		std::cout << "int: impossble" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	} else {
 		std::cout << "int: " << int_ << std::endl;
 	}

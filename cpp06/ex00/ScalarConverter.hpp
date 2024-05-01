@@ -5,6 +5,12 @@
 
 class ScalarConverter {
 	private:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter&);
+		ScalarConverter &operator=(const ScalarConverter&);
+		~ScalarConverter();
+
+	public:
 		struct Result {
 			char char_;
 			int int_;
@@ -12,12 +18,6 @@ class ScalarConverter {
 			double double_;
 		};
 
-		ScalarConverter();
-		ScalarConverter(const ScalarConverter&);
-		ScalarConverter &operator=(const ScalarConverter&);
-		~ScalarConverter();
-
-	public:
 		static Result convert(const std::string);
 };
 
