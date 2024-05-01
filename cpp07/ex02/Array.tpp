@@ -45,20 +45,20 @@ Array<T>::~Array() {
 }
 
 template<class T>
-T& Array<T>::operator[](const unsigned int n) const {
+T& Array<T>::operator[](const unsigned int n) {
 	if (n >= this->size()) {
 		throw std::out_of_range("Array: index out of range");
 	}
 	return data_[n];
 }
 
-// template<class T>
-// const T& Array<T>::operator[](const unsigned int n) const {
-// 	if (n >= this->size()) {
-// 		throw std::out_of_range("Array: index out of range");
-// 	}
-// 	return data_[n];
-// }
+template<class T>
+const T& Array<T>::operator[](const unsigned int n) const {
+	if (n >= this->size()) {
+		throw std::out_of_range("Array: index out of range");
+	}
+	return data_[n];
+}
 
 template<class T>
 unsigned int Array<T>::size() const {
