@@ -1,7 +1,6 @@
 #ifndef DATA_HPP_
 #define DATA_HPP_
 
-#include <cassert>
 #include <string>
 
 struct Data {

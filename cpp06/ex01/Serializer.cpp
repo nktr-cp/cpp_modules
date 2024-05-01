@@ -9,8 +9,7 @@ Serializer& Serializer::operator=(const Serializer& other) {(void)other; return 
 Serializer::~Serializer() {}
 
 uintptr_t Serializer::serialize(Data* ptr) {
-	// uncomment this line, you will realize why it is required to use
-	// reinterpret_cast instead of static_cast
+	// uncomment this line, you will realize why it is required to use reinterpret_cast instead of static_cast
 	// return static_cast<uintptr_t>(ptr);
 	return reinterpret_cast<uintptr_t>(ptr);
 }
