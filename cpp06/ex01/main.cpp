@@ -3,6 +3,8 @@
 #include "Serializer.hpp"
 
 signed main() {
+	// Serializer s;
+
 	Data d("knishiok", "FireRed", 5148);
 
 	uintptr_t serialized_ptr = Serializer::serialize(&d);

@@ -7,16 +7,16 @@ Converter::Converter() {}
 Converter::Converter(const std::string input)
 :	input_(input)
 {
-	this->judgeType();
-	this->convert();
-	this->printResult();
+	judgeType();
+	convert();
+	printResult();
 }
 
 Converter::Converter(const Converter& other)
 :	input_(other.input_)
 {
 	*this = other;
-	this->printResult();
+	printResult();
 }
 
 Converter& Converter::operator=(const Converter& other) {
@@ -24,11 +24,11 @@ Converter& Converter::operator=(const Converter& other) {
 		return *this;
 	}
 
-	this->type_ = other.type_;
-	this->char_ = other.char_;
-	this->int_ = other.int_;
-	this->float_ = other.float_;
-	this->double_ = other.double_;
+	type_ = other.type_;
+	char_ = other.char_;
+	int_ = other.int_;
+	float_ = other.float_;
+	double_ = other.double_;
 
 	return *this;
 }
@@ -40,105 +40,113 @@ void Converter::judgeType() {
 	// specific input?
 	const std::string specific[] = {"nan", "nanf", "+inf", "-inf", "+inff", "-inff"};
 	for (size_t i=0; i<sizeof(specific) / sizeof(std::string); i++) {
-		if (this->input_.compare(specific[i]) == 0) {
-			this->type_ = SPEC_T;
+		if (input_.compare(specific[i]) == 0) {
+			type_ = SPEC_T;
 			return;
 		}
 	}
 
 	// char?
-	if (this->input_.size() == 1 && this->input_.find_first_of("0123456789") == std::string::npos) {
-		this->type_ = CHAR_T;
+	if (input_.size() == 1 && input_.find_first_of("0123456789") == std::string::npos) {
+		type_ = CHAR_T;
 		return;
 	}
 
 	// int?
-	if (this->input_.find_first_not_of("-0123456789") == std::string::npos) {
-		if (this->input_.find_first_of("-") == 0 || this->input_.find_first_of("-") == std::string::npos) {
-			this->type_ = INT_T;
+	if (input_.find_first_not_of("-0123456789") == std::string::npos) {
+		if (input_.find_first_of("-") == input_.find_last_of("-")) {
+			type_ = INT_T;
 		} else {
-			this->type_ = ERROR_T;
+			type_ = ERROR_T;
 		}
 		return;
 	}
 
 	// double?
-	if (this->input_.find_first_not_of("-0123456789.") == std::string::npos) {
+	if (input_.find_first_not_of("-0123456789.") == std::string::npos) {
 		// exclude multiple '-' or '.'
 		// example - ".42.", "..42", "-42.-"
-		if ((this->input_.find_first_of("-") != this->input_.find_last_of("-")) 
-				|| (this->input_.find_first_of(".") != this->input_.find_last_of("."))) {
-					this->type_ = ERROR_T;
+		if ((input_.find_first_of("-") != input_.find_last_of("-")) 
+				|| (input_.find_first_of(".") != input_.find_last_of("."))) {
+					type_ = ERROR_T;
 					return;
 		}
 
 		// check position
 		// example - "4.-2", "-.42", ".42"
-		if (this->input_.find_first_of("-") != std::string::npos) {
-			if (this->input_.find_first_of("-") != 0) {
-				this->type_ = ERROR_T;
+		if (input_.find_first_of("-") != std::string::npos) {
+			// - not in the start of input
+			if (input_.find_first_of("-") != 0) {
+				type_ = ERROR_T;
 				return;
-			} else if (this->input_.find_first_of(".") <= 1) {
-					this->type_ = ERROR_T;
-					return;
+			} else if (input_.find_first_of(".") <= 1) {
+				type_ = ERROR_T;
+				return;
 			}
-		} else {
-			if (this->input_.find_first_of(".") != std::string::npos &&
-					this->input_.find_first_of(".") == 0) {
-						this->type_ = ERROR_T;
-						return;
-			}
+		} else if (input_.find_first_of(".") == 0) {
+				type_ = ERROR_T;
+				return;
 		}
 
-		this->type_ = DOUBLE_T;
+		// . at the end
+		if (input_.find_first_of(".") == input_.size() - 1) {
+			type_ = ERROR_T;
+			return;
+		}
+
+		type_ = DOUBLE_T;
 		return;
 	}
 
 	// float?
-	if (this->input_.find_first_not_of("-0123456789f") == std::string::npos) {
-		assert(this->input_.find_first_of("f") != std::string::npos);
-		if (this->input_.find_first_of("f") != this->input_.find_last_of("f") ||
-				this->input_.find_first_of("f") != this->input_.length() - 1) {
-					this->type_ = ERROR_T;
+	if (input_.find_first_not_of("-0123456789.f") == std::string::npos) {
+		// multiple 'f' or 'f' not at the end
+		if (input_.find_first_of("f") != input_.find_last_of("f") ||
+				input_.find_first_of("f") != input_.length() - 1) {
+					type_ = ERROR_T;
 					return;
 		}
 
 		// exclude multiple '-' or '.'
-		// example - ".42.", "..42", "-42.-"
-		if ((this->input_.find_first_of("-") != this->input_.find_last_of("-")) 
-				|| (this->input_.find_first_of(".") != this->input_.find_last_of("."))) {
-					this->type_ = ERROR_T;
+		if ((input_.find_first_of("-") != input_.find_last_of("-")) 
+				|| (input_.find_first_of(".") != input_.find_last_of("."))) {
+					type_ = ERROR_T;
 					return;
 		}
 
 		// check position
 		// example - "4.-2", "-.42", ".42"
-		if (this->input_.find_first_of("-") != std::string::npos) {
-			if (this->input_.find_first_of("-") != 0) {
-				this->type_ = ERROR_T;
+		if (input_.find_first_of("-") != std::string::npos) {
+			// - not in the start of input
+			if (input_.find_first_of("-") != 0) {
+				type_ = ERROR_T;
 				return;
-			} else if (this->input_.find_first_of(".") <= 1) {
-					this->type_ = ERROR_T;
-					return;
+			} else if (input_.find_first_of(".") <= 1) {
+				type_ = ERROR_T;
+				return;
 			}
-		} else {
-			if (this->input_.find_first_of(".") != std::string::npos &&
-					this->input_.find_first_of(".") == 0) {
-						this->type_ = ERROR_T;
-						return;
-			}
+		} else if (input_.find_first_of(".") == 0) {
+				type_ = ERROR_T;
+				return;
 		}
 
-		this->type_ = FLOAT_T;
+		// . at the end
+		if (input_.find_first_of(".") == input_.size() - 1) {
+			type_ = ERROR_T;
+			return;
+		}
+
+		type_ = FLOAT_T;
 		return;
 	}
 
-	this->type_ = ERROR_T;
+	// no matching type
+	type_ = ERROR_T;
 	return;
 }
 
 void Converter::convert() {
-	switch(this->type_) {
+	switch(getType()) {
 		case SPEC_T:
 			return;
 		case INT_T:
@@ -159,17 +167,17 @@ void Converter::convert() {
 }
 
 void Converter::convertChar() {
-	this->char_ = static_cast<char>(this->input_.front());
-	this->int_ = static_cast<int>(this->char_); 
-	this->float_ = static_cast<float>(this->char_); 
-	this->double_ = static_cast<double>(this->char_); 
+	char_ = static_cast<char>(input_.front());
+	int_ = static_cast<int>(char_); 
+	float_ = static_cast<float>(char_); 
+	double_ = static_cast<double>(char_); 
 }
 
 void Converter::convertInt() {
-	// detect overflow
+	// detect overflow before conversion
 	char *end;
-	const char* sptr = this->input_.c_str();
-	double check = strtod(sptr, &end);
+	const char* sptr = input_.c_str();
+	double check = std::strtod(sptr, &end);
 	if (end == NULL || *end != '\0') {
 		std::cerr << "Error while converting to double" << std::endl;
 		exit(EXIT_FAILURE);
@@ -179,92 +187,89 @@ void Converter::convertInt() {
 		throw Converter::OverflowDetected();
 	}
 
-
-	this->int_ = atoi(sptr);
-
-	this->char_ = static_cast<char>(this->int_);
-	this->float_ = static_cast<float>(this->int_);
-	this->double_ = static_cast<double>(this->int_);
+	int_ = std::atoi(sptr);
+	char_ = static_cast<char>(int_);
+	float_ = static_cast<float>(int_);
+	double_ = static_cast<double>(int_);
 }
 
 void Converter::convertFloat() {
-	const char* s_ptr = this->input_.c_str();
-	this->float_ = atof(s_ptr);
-
-	this->char_ = static_cast<char>(this->float_);
-	this->int_ = static_cast<int>(this->float_);
-	this->double_ = static_cast<double>(this->float_);	
+	const char* s_ptr = input_.c_str();
+	float_ = std::atof(s_ptr);
+	char_ = static_cast<char>(float_);
+	int_ = static_cast<int>(float_);
+	double_ = static_cast<double>(float_);	
 }
 
 void Converter::convertDouble() {
 	char *end;
-	const char* sptr = this->input_.c_str();
-	this->double_ = strtod(sptr, &end);
+	const char* sptr = input_.c_str();
+	double_ = std::strtod(sptr, &end);
 
 	if (end == NULL || *end != '\0') {
 		std::cerr << "Error while converting to double" << std::endl;
 		exit(EXIT_FAILURE);
 	}
 
-	this->char_ = static_cast<char>(this->double_);
-	this->int_ = static_cast<int>(this->double_);
-	this->float_ = static_cast<float>(this->double_);
+	char_ = static_cast<char>(double_);
+	int_ = static_cast<int>(double_);
+	float_ = static_cast<float>(double_);
 }
 
 void Converter::printResult() const {
-	assert(this->type_ != ERROR_T);
+	assert(type_ != ERROR_T);
 
 	const float eps = 1e-10;
 
 	// char
-	if (this->type_ == SPEC_T) {
+	if (type_ == SPEC_T) {
 		std::cout << "char: impossible" << std::endl;
 	} else {
-		if (isprint(this->char_)) {
-			std::cout << "char: '" << this->char_ << "'" << std::endl;
+		if (std::isprint(char_)) {
+			std::cout << "char: '" << char_ << "'" << std::endl;
 		} else {
 			std::cout << "char: Non displayable" << std::endl;
 		}
 	}
 
 	// int
-	if (this->type_ == SPEC_T) {
+	if (type_ == SPEC_T) {
 		std::cout << "int: impossble" << std::endl;
 	} else {
-		std::cout << "int: " << this->int_ << std::endl;
+		std::cout << "int: " << int_ << std::endl;
 	}
 
 	// float
-	if (this->type_ == SPEC_T) {
-		if (this->input_.compare("nan") == 0 || this->input_.compare("nanf") == 0) {
+	if (type_ == SPEC_T) {
+		if (input_.compare("nan") == 0 || input_.compare("nanf") == 0) {
 			std::cout << "float: nanf" << std::endl;
-		} else if (this->input_.front() == '+') {
+		} else if (input_.front() == '+') {
 			std::cout << "float: +inff" << std::endl;
 		} else {
-			assert(this->input_.front() == '-');
+			assert(input_.front() == '-');
 			std::cout << "float: -inff" << std::endl;
 		}
 	} else {
-		std::cout << "float: " << this->float_;
-		if (this->float_ - this->int_ < eps) {
+		std::cout << "float: " << float_;
+		if (std::abs(float_ - int_) < eps) {
 			std::cout << ".0";
 		}
 		std::cout << "f" << std::endl;
 	}
 
 	// double
-	if (this->type_ == SPEC_T) {
-		if (this->input_.compare("nan") == 0 || this->input_.compare("nanf") == 0) {
+	if (type_ == SPEC_T) {
+		if (input_.compare("nan") == 0 || input_.compare("nanf") == 0) {
 			std::cout << "double: nan" << std::endl;
-		} else if (this->input_.front() == '+') {
+		} else if (input_.front() == '+') {
 			std::cout << "double: +inf" << std::endl;
 		} else {
-			assert(this->input_.front() == '-');
+			assert(input_.front() == '-');
 			std::cout << "double: -inf" << std::endl;
 		}
 	} else {
-		std::cout << "double: " << this->double_;
-		if (this->float_ - this->int_ < eps) {
+		std::cout << "double: " << double_;
+		if (std::abs(double_ - int_) < eps) {
 			std::cout << ".0";
 		}
 		std::cout << std::endl;
@@ -282,25 +287,25 @@ const char* Converter::InvalidInput::what() const throw() {
 // -----------------------------------------------
 
 const std::string& Converter::getInput() const {
-	return this->input_;
+	return input_;
 }
 
 e_type Converter::getType() const {
-	return this->type_;
+	return type_;
 }
 
 char Converter::getChar() const {
-	return this->char_;
+	return char_;
 }
 
 int Converter::getInt() const {
-	return this->int_;
+	return int_;
 }
 
 float Converter::getFloat() const {
-	return this->float_;
+	return float_;
 }
 
 double Converter::getDouble() const {
-	return this->double_;
+	return double_;
 }

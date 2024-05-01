@@ -24,13 +24,9 @@ class Converter {
 
 	public:
 		Converter();
-
 		Converter(const std::string);
-
 		Converter(const Converter&);
-
 		Converter &operator=(const Converter&);
-
 		~Converter();
 
 		void judgeType();
