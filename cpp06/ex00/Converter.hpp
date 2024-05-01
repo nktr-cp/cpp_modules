@@ -2,6 +2,7 @@
 #define _CONVERTER_HPP_
 
 #include <string>
+#include <cmath>
 #include <cassert>
 
 typedef enum {

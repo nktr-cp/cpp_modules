@@ -251,7 +251,7 @@ void Converter::printResult() const {
 		}
 	} else {
 		std::cout << "float: " << float_;
-		if (std::abs(float_ - int_) < eps) {
+		if (std::fabs(float_ - int_) < eps) {
 			std::cout << ".0";
 		}
 		std::cout << "f" << std::endl;
@@ -269,7 +269,7 @@ void Converter::printResult() const {
 		}
 	} else {
 		std::cout << "double: " << double_;
-		if (std::abs(double_ - int_) < eps) {
+		if (std::fabs(double_ - int_) < eps) {
 			std::cout << ".0";
 		}
 		std::cout << std::endl;
