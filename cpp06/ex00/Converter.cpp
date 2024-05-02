@@ -196,6 +196,11 @@ void Converter::convertInt() {
 void Converter::convertFloat() {
 	const char* s_ptr = input_.c_str();
 	float_ = std::atof(s_ptr);
+
+	if (float_ < std::numeric_limits<int>::min() || float_ > std::numeric_limits<int>::max()) {
+		throw Converter::OverflowDetected();
+	}
+
 	char_ = static_cast<char>(float_);
 	int_ = static_cast<int>(float_);
 	double_ = static_cast<double>(float_);	
@@ -209,6 +214,10 @@ void Converter::convertDouble() {
 	if (end == NULL || *end != '\0') {
 		std::cerr << "Error while converting to double" << std::endl;
 		exit(EXIT_FAILURE);
+	}
+
+	if (double_ < std::numeric_limits<int>::min() || double_ > std::numeric_limits<int>::max()) {
+		throw Converter::OverflowDetected();
 	}
 
 	char_ = static_cast<char>(double_);
