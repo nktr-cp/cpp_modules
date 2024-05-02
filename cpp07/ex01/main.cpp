@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 #include "iter.hpp"
 
 // test for integer inputs
@@ -16,7 +17,7 @@ void testFunc1(T elem) {
 // test for decimal input
 template<class T>
 void testFunc2(T elem) {
-	std::cout << std::ceil(elem) << std::endl;
+	std::cout << ceil(elem) << std::endl;
 }
 
 // test for string input
