@@ -19,6 +19,7 @@ int main()
 			std::cout << e.what() << std::endl;
 		}
 	}
+	std::cout << "++++++++++++++++++++++++++++++++" << std::endl;
 	{
 		try {
 			std::vector<int> vec;
@@ -41,6 +42,7 @@ int main()
 			std::cout << e.what() << std::endl;
 		}
 	}
+	std::cout << "++++++++++++++++++++++++++++++++" << std::endl;
 	{
 		try {
 			Span sp(100000);
