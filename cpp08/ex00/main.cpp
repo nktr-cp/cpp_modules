@@ -17,7 +17,7 @@ signed main(void) {
 	}
 
 	{
-		std::vector<int>::const_iterator it = easyfind(vec, 10);
+		std::vector<int>::iterator it = easyfind(vec, 10);
 
 		std::cout << "+++++++++++++++" << std::endl;
 		std::cout << "Result of easyfind(vec, 10)" << std::endl;
@@ -25,7 +25,7 @@ signed main(void) {
 		std::cout << *it << std::endl;
 	}
 	{
-		std::vector<int>::const_iterator it = easyfind(vec, 100);
+		std::vector<int>::iterator it = easyfind(vec, 100);
 		assert(it == vec.end());
 
 		std::cout << "+++++++++++++++" << std::endl;
