@@ -45,7 +45,7 @@ unsigned int Span::shortestSpan() const {
 	while (it != fin_it) {
 		long value1 = *it++;
 		long value2 = *it;
-		minspan = std::min(minspan, value2-value1);
+		if (value2-value1 < minspan) minspan = value2-value1;
 	}
 
 	return static_cast<unsigned int>(minspan);
