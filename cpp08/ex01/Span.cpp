@@ -18,6 +18,7 @@ Span& Span::operator=(const Span& other) {
 	}
 
 	numbers_ = other.numbers_;
+	capacity_ = other.capacity_;
 	return *this;
 }
 

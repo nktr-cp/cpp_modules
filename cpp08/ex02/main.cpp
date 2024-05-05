@@ -1,4 +1,5 @@
 #include <iostream>
+#include <set>
 #include "MutantStack.hpp"
 
 int main() {
@@ -37,6 +38,22 @@ int main() {
 			std::cout << ms.size() << std::endl;
 			int val = 0;
 			for (MutantStack<int>::iterator it=ms.begin(); it!=ms.end(); ++it) {
+				val += *it;
+			}
+			std::cout << val << std::endl;
+		} catch (std::exception &e) {
+			std::cout << "Exception thrown: " << e.what() << std::endl;
+		}
+	}
+	{
+		try {
+			std::set<int> ms;
+			for (int i=0; i<5000; i++) {
+				ms.insert(i);
+			}
+			std::cout << ms.size() << std::endl;
+			int val = 0;
+			for (std::set<int>::iterator it=ms.begin(); it!=ms.end(); ++it) {
 				val += *it;
 			}
 			std::cout << val << std::endl;
