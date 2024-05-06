@@ -93,7 +93,7 @@ void PmergeMe::Vector::BinaryInsertion(int v) {
 
 void PmergeMe::Vector::InsertByJacobsthal() {
 	// Place the element paired with the smallest element of mainChain at the beginning of mainChain.
-	BinaryInsertion(remaining_chain_[0]);
+	main_chain_.insert(main_chain_.begin(), remaining_chain_[0]);
 
 	size_t inserted_number_count = 1;
 
@@ -236,7 +236,7 @@ void PmergeMe::Deque::BinaryInsertion(int v) {
 
 void PmergeMe::Deque::InsertByJacobsthal() {
 	// Place the element paired with the smallest element of mainChain at the beginning of mainChain.
-	BinaryInsertion(remaining_chain_[0]);
+	main_chain_.insert(main_chain_.begin(), remaining_chain_[0]);
 
 	size_t inserted_number_count = 1;
 

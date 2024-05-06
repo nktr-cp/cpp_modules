@@ -41,11 +41,6 @@ signed main(signed ac, char** av) {
 		deque_merger.merge_insertion_sort();
 		clock_t end_deque = clock();
 
-		std::cout << "Before: ";
-		deque_merger.print_numbers();
-		std::cout << "After: ";
-		deque_merger.print_mainChain();
-
 		double elapsed_time_deque = static_cast<double>(end_deque - start_deque) / CLOCKS_PER_SEC;
 		std::cout << "Time to process a range " << std::setw(4) << ac - 1
 			<< " elements with std::deque : " << elapsed_time_deque << " us" << std::endl;
