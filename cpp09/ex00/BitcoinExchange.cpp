@@ -1,28 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-bool BitcoinExchange::check_date_(const std::string& date) {
-	int year, month, day;
-	std::istringstream iss(date);
-	char delim1, delim2;
-
-	iss >> year >> delim1 >> month >> delim2 >> day;
-
-	if (iss.fail() || iss.get() != EOF || delim1 != '-' || delim2 != '-') {
-		return false;
-	}
-
-	// yearのバリデーションは適当
-	if (year > 2025 || year < 2000) return false;
-	// month-day
-	if (day < 1 || month < 1 || month > 12) return false;
-	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8
-			|| month == 10 || month == 12) && day > 31) return false;
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) return false;
-	if (month == 2 && day > 29) return false; 
-
-	return true;
-}
-
 bool BitcoinExchange::check_value_(const std::string& valueStr) {
 	double value;
 	std::istringstream iss(valueStr);
@@ -90,7 +67,7 @@ void BitcoinExchange::process_line(const std::string &line, bool is_first = fals
 			return;
 		}
 	}
-	if (!check_date_(date)) {
+	if (!Database::check_date(date)) {
 		std::cout << "Error: bad input => " << date << std::endl;
 		return;
 	}

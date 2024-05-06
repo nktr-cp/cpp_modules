@@ -19,6 +19,8 @@ class Database {
 		std::map<std::string, double>::const_iterator getPrice(const std::string&) const;
 		std::map<std::string, double>::const_iterator begin() const;
 		std::map<std::string, double>::const_iterator end() const;
+
+		static bool check_date(const std::string& date);
 };
 
 #endif // DATABASE_HPP
