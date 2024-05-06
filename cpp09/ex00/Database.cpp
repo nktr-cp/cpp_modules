@@ -17,6 +17,10 @@ Database::Database(const std::string& filename) {
 		std::getline(iss, data, ',');
 		std::getline(iss, priceStr);
 
+		if (iss.fail() || iss.get() != EOF) {
+			throw std::runtime_error("Error: invalid database");
+		}
+
 		if (is_first_line) {
 			if (data.compare("date") || priceStr.compare("exchange_rate")) {
 				throw std::runtime_error("Error: invalid database");
