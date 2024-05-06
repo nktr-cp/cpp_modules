@@ -22,19 +22,33 @@ signed main(signed ac, char** av) {
 			}
 		}
 
-		PmergeMe merger(numbers);
+		PmergeMe::Vector vector_merger(numbers);
 		clock_t start_vec = clock();
-		merger.merge_insertion_sort();
+		vector_merger.merge_insertion_sort();
 		clock_t end_vec = clock();
 
 		std::cout << "Before: ";
-		merger.print_numbers();
+		vector_merger.print_numbers();
 		std::cout << "After: ";
-		merger.print_mainChain();
+		vector_merger.print_mainChain();
 
 		double elapsed_time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC;
 		std::cout << "Time to process a range " << std::setw(4) << ac - 1
 			<< " elements with std::vector : " << elapsed_time_vec << " us" << std::endl;
+
+		PmergeMe::Deque deque_merger(numbers);
+		clock_t start_deque = clock();
+		deque_merger.merge_insertion_sort();
+		clock_t end_deque = clock();
+
+		std::cout << "Before: ";
+		deque_merger.print_numbers();
+		std::cout << "After: ";
+		deque_merger.print_mainChain();
+
+		double elapsed_time_deque = static_cast<double>(end_deque - start_deque) / CLOCKS_PER_SEC;
+		std::cout << "Time to process a range " << std::setw(4) << ac - 1
+			<< " elements with std::deque : " << elapsed_time_deque << " us" << std::endl;
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
