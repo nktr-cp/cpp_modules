@@ -1,4 +1,4 @@
-NAME := ex03
+NAME := bsp
 SRC := main.cpp \
 			 Fixed.cpp \
 			 Point.cpp \

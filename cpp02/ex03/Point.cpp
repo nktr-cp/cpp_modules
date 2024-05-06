@@ -15,12 +15,7 @@ Point& Point::operator=(const Point& other) {
 	return *this;
 }
 
-Point Point::operator-(const Point& other) {
-	Fixed x = (Fixed) this->x_ - other.getX();
-	Fixed y = (Fixed) this->y_ - other.getY();
-
-	return Point(x.toFloat(), y.toFloat());
-}
+Point::~Point() {}
 
 Fixed Point::getX() const {
 	return this->x_;
@@ -30,4 +25,3 @@ Fixed Point::getY() const {
 	return this->y_;
 }
 
-Point::~Point() {}
