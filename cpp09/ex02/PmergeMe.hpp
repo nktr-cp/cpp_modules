@@ -22,13 +22,13 @@ procedure:
 #include <utility>
 
 class PmergeMe {
-	public:
+	private:
 			PmergeMe();
-			PmergeMe(std::vector<int>&);
 			PmergeMe(const PmergeMe&);
 			PmergeMe& operator=(const PmergeMe&);
 			~PmergeMe();
 
+	public:
 		class Vector {
 			private:
 				std::vector<int> numbers_;
