@@ -25,6 +25,7 @@ class PmergeMe {
 		std::vector<int> numbers_;
 		std::vector<std::pair<int,int> > paired_numbers_;
 		std::vector<int> main_chain_;
+		std::vector<int> remaining_chain_;
 
 		// util
 		void merge(int l, int m, int r);
@@ -35,6 +36,7 @@ class PmergeMe {
 		void MergeSort(int l, int r);
 		void StructMainChain();
 		void InsertByJacobsthal();
+		void BinaryInsertion(int v);
 
 	public:
 		PmergeMe();

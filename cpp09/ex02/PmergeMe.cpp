@@ -3,13 +3,15 @@
 PmergeMe::PmergeMe()
 : numbers_(std::vector<int>()),
 	paired_numbers_(std::vector<std::pair<int,int> >()),
-	main_chain_()
+	main_chain_(std::vector<int>()),
+	remaining_chain_(std::vector<int>())
 {}
 
 PmergeMe::PmergeMe(std::vector<int>& vec)
 : numbers_(vec),
 	paired_numbers_(std::vector<std::pair<int,int> >()),
-	main_chain_()
+	main_chain_(std::vector<int>()),
+	remaining_chain_(std::vector<int>())
 {}
 
 PmergeMe::PmergeMe(const PmergeMe& other) {
@@ -21,8 +23,10 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 		return *this;
 	}
 
-	this->numbers_.clear();
 	numbers_ = other.numbers_;
+	paired_numbers_ = other.paired_numbers_;
+	main_chain_ = other.main_chain_;
+	remaining_chain_ = other.remaining_chain_;
 	return *this;
 }
 
@@ -72,44 +76,43 @@ void PmergeMe::StructMainChain() {
 	for (size_t i=0; i<paired_numbers_.size(); i++) {
 		main_chain_.push_back(paired_numbers_[i].first);
 	}
+
+	for (size_t i=0; i<paired_numbers_.size(); i++) {
+		remaining_chain_.push_back(paired_numbers_[i].second);
+	}
+	if (numbers_.size() % 2) {
+		remaining_chain_.push_back(numbers_.back());
+	}
+}
+
+void PmergeMe::BinaryInsertion(int v) {
+	std::vector<int>::iterator it = lower_bound(main_chain_.begin(), main_chain_.end(), v);
+	main_chain_.insert(it, v);
 }
 
 void PmergeMe::InsertByJacobsthal() {
-	std::vector<int> is_inserted(paired_numbers_.size(), 0);
 	// Place the element paired with the smallest element of mainChain at the beginning of mainChain.
-	int v = paired_numbers_[0].second;
-	std::vector<int>::iterator it = lower_bound(main_chain_.begin(), main_chain_.end(), v);
-	main_chain_.insert(it, v);
-	is_inserted[0] = true;
+	BinaryInsertion(remaining_chain_[0]);
 
-	size_t prev = 0, cur = 1;
-	while (cur < paired_numbers_.size()) {
-		if (!is_inserted[cur]) {
-			int v = paired_numbers_[cur].second;
-			std::vector<int>::iterator it = lower_bound(main_chain_.begin(), main_chain_.end(), v);
-			main_chain_.insert(it, v);
-			is_inserted[cur] = true;
+	size_t inserted_number_count = 1;
+
+	size_t prev_group_size = 0;
+	size_t cur_group_size = 2;
+
+	while (inserted_number_count + cur_group_size < remaining_chain_.size()) {
+		size_t index = inserted_number_count + cur_group_size - 1;
+		while (index >= inserted_number_count) {
+			BinaryInsertion(remaining_chain_[index--]);
 		}
 
-		// jacobsthal sequence
-		int next = cur + prev * 2;
-		prev = cur;
-		cur = next;
+		inserted_number_count += cur_group_size;
+		size_t next_group_size = cur_group_size + 2 * prev_group_size;
+		prev_group_size = cur_group_size;
+		cur_group_size = next_group_size;
 	}
 
-	for (size_t i=0; i<paired_numbers_.size(); i++) {
-		if (!is_inserted[i]) {
-			int v = paired_numbers_[i].second;
-			std::vector<int>::iterator it = lower_bound(main_chain_.begin(), main_chain_.end(), v);
-			main_chain_.insert(it, v);
-			is_inserted[i] = true;
-		}
-	}
-
-	if (numbers_.size() % 2) {
-		int v = numbers_.back();
-		std::vector<int>::iterator it = lower_bound(main_chain_.begin(), main_chain_.end(), v);
-		main_chain_.insert(it, v);
+	for (size_t i=remaining_chain_.size()-1; i>=inserted_number_count; i--) {
+		BinaryInsertion(remaining_chain_[i]);
 	}
 }
 

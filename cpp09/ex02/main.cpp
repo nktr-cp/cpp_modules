@@ -1,5 +1,6 @@
 #include <sstream>
 #include <ctime>
+#include <iomanip>
 #include "PmergeMe.hpp"
 
 signed main(signed ac, char** av) {
@@ -31,8 +32,8 @@ signed main(signed ac, char** av) {
 		std::cout << "After: ";
 		merger.print_mainChain();
 
-		double elapsed_time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000.0;
-		std::cout << "Time to process a range " << ac - 1
+		double elapsed_time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC;
+		std::cout << "Time to process a range " << std::setw(4) << ac - 1
 			<< " elements with std::vector : " << elapsed_time_vec << " us" << std::endl;
 	} catch (std::exception &e) {
 		std::cout << "Error: " << e.what() << std::endl;
