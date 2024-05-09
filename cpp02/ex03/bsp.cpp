@@ -1,32 +1,21 @@
 #include "Point.h"
-// https://www.geeksforgeeks.org/check-whether-a-given-point-lies-inside-a-triangle-or-not/
+// https://stackoverflow.com/questions/2049582/how-to-determine-if-a-point-is-in-a-2d-triangle
 
-static float cross(Point const a, Point const b, Point const c) {
-	float ax = b.getX().toFloat() - a.getX().toFloat();
-	float ay = b.getY().toFloat() - a.getY().toFloat();
-	float bx = c.getX().toFloat() - a.getX().toFloat();
-	float by = c.getY().toFloat() - a.getY().toFloat();
-	return ax * by - ay * bx;
-}
+static Fixed sign(Point p1, Point p2, Point p3) {
+	Point a = p1 - p3;
+	Point b = p2 - p3;
 
-static bool not_on_edge_or_vertex(Point const &a, Point const &b, Point const &c, Point const &p) {
-	float ab = cross(a, b, p);
-	float bc = cross(b, c, p);
-	float ca = cross(c, a, p);
-	return std::fabs(ab) > 1e-6 && std::fabs(bc) > 1e-6 && std::fabs(ca) > 1e-6;
-}
+	Fixed f1 = a.getX() * b.getY();
+	Fixed f2 = a.getY() * b.getX();
 
-static float area(Point const p1, Point const p2, Point const p3) {
-	return std::fabs(cross(p1, p2, p3)) * 0.5f;
+	return f1 - f2;
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point) {
-	if (!not_on_edge_or_vertex(a, b, c, point)) return false;
+	float d1 = sign(point, a, b).toFloat();
+	float d2 = sign(point, b, c).toFloat();
+	float d3 = sign(point, c, a).toFloat();
 
-	float A = area(a, b, c);
-	float A1 = area(point, b, c);
-	float A2 = area(a, point, c);
-	float A3 = area(a, b, point);
-
-	return std::fabs(A - (A1 + A2 + A3)) < 1e-6;
+	return ((d1 > 0 && d2 > 0 && d3 > 0)
+					|| (d1 < 0 && d2 < 0 && d3 < 0));
 }
