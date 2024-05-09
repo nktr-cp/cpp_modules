@@ -1,8 +1,6 @@
 #ifndef FIXED_H_
 #define FIXED_H_
 
-#include <string>
-
 class Fixed {
 	private:
 		int	value_;
