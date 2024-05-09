@@ -16,12 +16,12 @@ signed main( void ) {
 	std::cout << a << std::endl;
 	std::cout << "++++++++++++++++++++++++" << std::endl;
 	// comparison operators
-	std::cout << ((b > c) ? b : c) << std::endl;
-	std::cout << ((b >= c) ? b : c) << std::endl;
-	std::cout << ((b < c) ? b : c) << std::endl;
-	std::cout << ((b <= c) ? b : c) << std::endl;
-	std::cout << ((b != c) ? b : c) << std::endl;
-	std::cout << ((b == c) ? b : c) << std::endl;
+	std::cout << ((b > c) ? "true" : "false") << std::endl;
+	std::cout << ((b >= c) ? "true" : "false") << std::endl;
+	std::cout << ((b < c) ? "true" : "false") << std::endl;
+	std::cout << ((b <= c) ? "true" : "false") << std::endl;
+	std::cout << ((b != c) ? "true" : "false") << std::endl;
+	std::cout << ((b == c) ? "true" : "false") << std::endl;
 	std::cout << "++++++++++++++++++++++++" << std::endl;
 	// arithmetic operators
 	std::cout << b+c << std::endl;

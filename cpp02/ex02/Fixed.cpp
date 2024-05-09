@@ -6,7 +6,7 @@ Fixed::Fixed() : value_(0) {
 	std::cerr << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int value) : value_(value << fractionalBits) {
+Fixed::Fixed(const int value) : value_(value * (1 << fractionalBits)) {
 	std::cerr << "Int constructor called" << std::endl;
 }
 
@@ -40,48 +40,67 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 bool Fixed::operator>(const Fixed& other) const {
 	return this->value_ > other.value_;
 }
+
 bool Fixed::operator<(const Fixed& other) const {
-	return this->value_ < other.value_;
+	return other > *this;
 }
+
 bool Fixed::operator>=(const Fixed& other) const {
-	return this->value_ >= other.value_;
+	return !(*this < other);
 }
+
 bool Fixed::operator<=(const Fixed& other) const {
-	return this->value_ <= other.value_;
+	return !(*this > other);
 }
+
 bool Fixed::operator==(const Fixed& other) const {
 	return this->value_ == other.value_;
 }
+
 bool Fixed::operator!=(const Fixed& other) const {
 	return this->value_ != other.value_;
 }
 
 Fixed Fixed::operator+(const Fixed& other) {
-	return Fixed(this->toFloat() + other.toFloat());
+	Fixed res;
+	res.setRawBits(this->getRawBits() + other.getRawBits());
+	return res;
 }
+
 Fixed Fixed::operator-(const Fixed& other) {
-	return Fixed(this->toFloat() - other.toFloat());
+	Fixed res;
+	res.setRawBits(this->getRawBits() - other.getRawBits());
+	return res;
 }
+
 Fixed Fixed::operator*(const Fixed& other) {
-	return Fixed(this->toFloat() * other.toFloat());
+	Fixed res;
+	res.setRawBits(static_cast<int>((static_cast<long>(getRawBits() * other.getRawBits())) >> fractionalBits));
+	return res;
 }
+
 Fixed Fixed::operator/(const Fixed& other) {
-	return Fixed(this->toFloat() / other.toFloat());
+	Fixed res;
+	res.setRawBits(this->getRawBits() / other.getRawBits() << fractionalBits);
+	return res;
 }
 
 Fixed& Fixed::operator++() {
 	this->value_++;
 	return *this;
 }
+
 Fixed Fixed::operator++(int) {
 	Fixed res(*this);
 	this->value_++;
 	return res;
 }
+
 Fixed& Fixed::operator--() {
 	this->value_--;
 	return *this;	
 }
+
 Fixed Fixed::operator--(int) {
 	Fixed res(*this);
 	this->value_--;
@@ -119,5 +138,5 @@ float Fixed::toFloat(void) const {
 }
 
 int Fixed::toInt(void) const {
-	return this->value_ >> fractionalBits;
+	return this->value_ / (1 << fractionalBits);
 }
