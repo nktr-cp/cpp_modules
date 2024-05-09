@@ -10,8 +10,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.c
-	$(CCX) $(CCXFLAGS) -c $^ -o $@
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 clean:
 	$(RM) $(OBJ)
