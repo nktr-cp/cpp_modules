@@ -6,7 +6,7 @@ Fixed::Fixed() : value_(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int value) : value_(value << fractionalBits) {
+Fixed::Fixed(const int value) : value_(value * (1 << fractionalBits)) {
 	std::cout << "Int constructor called" << std::endl;
 }
 
@@ -52,5 +52,5 @@ float Fixed::toFloat(void) const {
 }
 
 int Fixed::toInt(void) const {
-	return this->value_ >> fractionalBits;
+	return this->value_ / (1 << fractionalBits);
 }
