@@ -1,7 +1,6 @@
 #ifndef FIXED_H_
 #define FIXED_H_
 
-#include <string>
 #include <iostream>
 
 class Fixed {
