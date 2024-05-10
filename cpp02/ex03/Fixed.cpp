@@ -81,7 +81,7 @@ Fixed Fixed::operator*(const Fixed& other) {
 
 Fixed Fixed::operator/(const Fixed& other) {
 	Fixed res;
-	res.setRawBits(this->getRawBits() / other.getRawBits() << fractionalBits);
+	res.setRawBits((this->getRawBits() / other.getRawBits()) * (1 << fractionalBits));
 	return res;
 }
 
