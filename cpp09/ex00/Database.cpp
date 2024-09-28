@@ -2,27 +2,49 @@
 
 Database::Database() {}
 
+#include <iostream>
 bool Database::check_date(const std::string& date) {
-  int year, month, day;
-  std::istringstream iss(date);
-  char delim1, delim2;
-
-  iss >> year >> delim1 >> month >> delim2 >> day;
-
-  if (iss.fail() || iss.get() != EOF || delim1 != '-' || delim2 != '-') {
+  if (date.length() != 10) {
     return false;
   }
 
-  // yearのバリデーションは適当
-  if (year > 2025 || year < 2000) return false;
-  // month-day
-  if (day < 1 || month < 1 || month > 12) return false;
+  std::string year_str = date.substr(0, 4);
+  std::string month_str = date.substr(5, 2);
+  std::string day_str = date.substr(8, 2);
+
+  if (date[4] != '-' || date[7] != '-') {
+    return false;
+  }
+
+  int year;
+  std::istringstream year_iss(year_str);
+  year_iss >> year;
+  if (year_iss.fail() || year_iss.get() != EOF || year > 2025 || year < 2000) {
+    return false;
+  }
+
+  int month;
+  std::istringstream month_iss(month_str);
+  month_iss >> month;
+  if (month_iss.fail() || month_iss.get() != EOF || month < 1 || month > 12) {
+    return false;
+  }
+
+  int day;
+  std::istringstream day_iss(day_str);
+  day_iss >> day;
+  if (day_iss.fail() || day_iss.get() != EOF || day < 1) {
+    return false;
+  }
+
   if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 ||
        month == 10 || month == 12) &&
-      day > 31)
+      day > 31) {
     return false;
-  if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+  }
+  if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
     return false;
+  }
   if (month == 2) {
     if (year % 4 == 0 && day > 29) return false;
     if (year % 4 != 0 && day > 28) return false;
