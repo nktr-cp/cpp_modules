@@ -19,7 +19,7 @@ bool Database::check_date(const std::string& date) {
   int year;
   std::istringstream year_iss(year_str);
   year_iss >> year;
-  if (year_iss.fail() || year_iss.get() != EOF || year > 2025 || year < 2000) {
+  if (year_iss.fail() || year_iss.get() != EOF || year > 2025 || year < 2009) {
     return false;
   }
 
