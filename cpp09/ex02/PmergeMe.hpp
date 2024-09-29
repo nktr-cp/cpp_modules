@@ -22,6 +22,9 @@ class PmergeMe {
     int left = 0;
     while (left <= right) {
       int mid = left + (right - left) / 2;
+#ifdef DEBUG
+      num_comparison++;
+#endif  // DEBUG
       if (mainChain[mid] == v) {
         left = mid;
         break;
@@ -30,18 +33,10 @@ class PmergeMe {
       } else {
         right = mid - 1;
       }
-#ifdef DEBUG
-      num_comparison++;
-#endif  // DEBUG
     }
     mainChain.insert(mainChain.begin() + left, v);
 
     return left;
-    typename Container::iterator it =
-        std::lower_bound(mainChain.begin(), mainChain.end(), v);
-    int ret = it - mainChain.begin();
-    mainChain.insert(it, v);
-    return ret;
   }
 
  public:
@@ -63,12 +58,11 @@ class PmergeMe {
     // first, make pairs of elements
     // if N is odd, the last element is left as it is
     // swap elements so that the larger element is in the first half
-    for (int i = 0, j = N / 2; j < N; ++i, ++j) {
-      if (elements[i] < elements[j]) {
+    for (int i = 0, j = N / 2; i < N / 2; ++i, ++j) {
 #ifdef DEBUG
-        num_comparison++;
+      num_comparison++;
 #endif  // DEBUG
-
+      if (elements[i] < elements[j]) {
         std::swap(elements[i], elements[j]);
         std::swap(sortIndices[i], sortIndices[j]);
       }
@@ -112,7 +106,7 @@ class PmergeMe {
     // since mainChain is sorted in ascending order
     // and therefore mainChain[0] is the smallest element in mainChain
     mainChain.insert(mainChain.begin(), remChain.front());
-    for (int i = N / 2; i >= 0; --i) {
+    for (int i = N / 2 - 1; i >= 0; --i) {
       mainChainIdx[i + 1] = mainChainIdx[i];
     }
     mainChainIdx.front() = remChainIdx.front();
@@ -157,12 +151,13 @@ class PmergeMe {
       size_t nextGroupSize = curGroupSize + 2 * prevGroupSize;
       prevGroupSize = curGroupSize;
       curGroupSize = nextGroupSize;
-      upperBoundIndex = (2 * (upperBoundIndex + 1) - 1 < (size_t)N)
-                            ? 2 * (upperBoundIndex + 1) - 1
-                            : N - 1;
+      upperBoundIndex = 2 * upperBoundIndex + 1;
     }
 
     for (size_t index = remChain.size() - 1; index >= numInserted; --index) {
+      if (upperBoundIndex > mainChain.size()) {
+        upperBoundIndex = mainChain.size();
+      }
       int insertedIndex =
           binaryInsertion(mainChain, remChain[index], upperBoundIndex - 1);
       for (int j = N - 1; j > insertedIndex; --j) {
