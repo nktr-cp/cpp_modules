@@ -72,7 +72,7 @@ void BitcoinExchange::process_line(const std::string& line,
     return;
   }
   if (!check_value_(valueStr)) {
-    std::cerr << "Error: Invalid value input => " << valueStr << std::endl;
+    std::cout << "Error: Invalid value input => " << valueStr << std::endl;
     return;
   }
 

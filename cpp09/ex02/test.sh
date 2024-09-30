@@ -1,7 +1,7 @@
 #!/bin/bash
 
 test_count=0
-max_tests=10000
+max_tests=50000
 
 while [ $test_count -lt $max_tests ]; do
   # Generate 21 random numbers between 1 and 100000

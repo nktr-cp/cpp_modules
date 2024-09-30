@@ -54,7 +54,7 @@ bool Database::check_date(const std::string& date) {
 }
 
 Database::Database(const std::string& filename) {
-  std::ifstream file(filename);
+  std::ifstream file(filename.c_str());
   if (!file.is_open()) {
     throw std::runtime_error("Error: Invalid database file");
   }

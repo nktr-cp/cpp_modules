@@ -1,7 +1,6 @@
 #ifndef PMERGE_ME_HPP
 #define PMERGE_ME_HPP
 
-#include <cassert>
 #include <iostream>
 
 #ifdef DEBUG
@@ -20,6 +19,9 @@ class PmergeMe {
   int binaryInsertion(Container& mainChain, typename Container::value_type v,
                       int right) {
     int left = 0;
+    if (mainChain.size() <= static_cast<size_t>(right)) {
+      right = mainChain.size() - 1;
+    }
     while (left <= right) {
       int mid = left + (right - left) / 2;
 #ifdef DEBUG
@@ -69,12 +71,12 @@ class PmergeMe {
     }
 
     if (N == 2) {
-      std::reverse(sortIndices.begin(), sortIndices.end());
+      std::swap(elements[0], elements[1]);
       return sortIndices;
     }
 
     // sort the first half
-    // this will be the permutation of [0..N/2]
+    // this will be the permutation of [0..N/2)
     Container first_half =
         mergeInsertionSort(elements.begin(), elements.begin() + N / 2);
 
@@ -111,21 +113,13 @@ class PmergeMe {
     }
     mainChainIdx.front() = remChainIdx.front();
 
-    if (!(std::is_sorted(mainChain.begin(), mainChain.end()))) {
-      std::cerr << "++++ mainChain ++++" << std::endl;
-      for (int i = 0; i < N; ++i) {
-        std::cerr << mainChain[i] << " ";
-      }
-      std::cerr << std::endl;
-      assert(false);
-    }
-
     // insert using Jacobsthal
     // Jacobsthal sequence here is defined as follows:
     // J(0) = 0, J(1) = 2, J(n) = J(n-1) + 2 * J(n-2)
     size_t numInserted = 1;
     size_t prevGroupSize = 0;
     size_t curGroupSize = 2;
+    // upperBoundIndex: 3 -> 7 -> 15 -> 31 -> 63 -> ...
     size_t upperBoundIndex = (N - 1 < 4 ? N - 1 : 3);
 
     // insert elements in remChain to mainChain
@@ -155,9 +149,6 @@ class PmergeMe {
     }
 
     for (size_t index = remChain.size() - 1; index >= numInserted; --index) {
-      if (upperBoundIndex > mainChain.size()) {
-        upperBoundIndex = mainChain.size();
-      }
       int insertedIndex =
           binaryInsertion(mainChain, remChain[index], upperBoundIndex - 1);
       for (int j = N - 1; j > insertedIndex; --j) {
