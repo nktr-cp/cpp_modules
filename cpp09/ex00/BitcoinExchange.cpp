@@ -83,7 +83,7 @@ void BitcoinExchange::process_line(const std::string& line,
     return;
   }
 
-  if (value > std::numeric_limits<int>::max()) {
+  if (value > INT_MAX) {
     std::cout << "Error: too large a number" << std::endl;
     return;
   }
