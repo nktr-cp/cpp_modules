@@ -71,7 +71,7 @@ class PmergeMe {
     }
 
     if (N == 2) {
-      std::swap(elements[0], elements[1]);
+      std::swap(sortIndices[0], sortIndices[1]);
       return sortIndices;
     }
 
