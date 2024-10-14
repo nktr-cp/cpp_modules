@@ -2,7 +2,6 @@
 
 Database::Database() {}
 
-#include <iostream>
 bool Database::check_date(const std::string& date) {
   if (date.length() != 10) {
     return false;
