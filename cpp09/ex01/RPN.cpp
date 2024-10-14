@@ -11,8 +11,8 @@ RPN& RPN::operator=(const RPN& dummy) {
 
 RPN::~RPN() {}
 
-bool RPN::is_op_(const char c) {
-  return c == '+' || c == '-' || c == '/' || c == '*';
+bool RPN::is_op_(const std::string input) {
+  return input == "+" || input == "-" || input == "*" || input == "/";
 }
 
 int RPN::process_op_(const char op, int a, int b) {
@@ -45,12 +45,9 @@ void RPN::process_expression(const std::string& expression) {
         throw std::domain_error("input integer out of range");
       }
       st.push(token[0] - '0');
-    } else if (is_op_(token[0])) {
+    } else if (is_op_(token)) {
       if (st.size() < 2) {
         throw std::runtime_error("not enough operands");
-      }
-      if (token.size() > 1) {
-        throw std::runtime_error("invalid operator");
       }
 
       int a = st.top();
