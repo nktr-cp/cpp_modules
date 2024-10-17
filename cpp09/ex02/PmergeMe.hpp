@@ -1,8 +1,6 @@
 #ifndef PMERGE_ME_HPP
 #define PMERGE_ME_HPP
 
-#include <iostream>
-
 #ifdef DEBUG
 extern int num_comparison;
 #endif  // DEBUG

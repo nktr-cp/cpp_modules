@@ -1,6 +1,7 @@
 #include <ctime>
 #include <deque>
 #include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <vector>
 
