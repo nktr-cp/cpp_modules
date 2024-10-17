@@ -3,16 +3,39 @@
 
 #include <climits>
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
+#include <map>
+#include <sstream>
+#include <string>
 
-#include "Database.hpp"
+/* Database */
+class Database {
+ private:
+  std::map<std::string, double> table_;
 
+ public:
+  Database();
+  Database(const std::string&);
+  Database& operator=(const Database&);
+  Database(const Database&);
+  ~Database();
+
+  std::map<std::string, double>::const_iterator getPrice(
+      const std::string&) const;
+  std::map<std::string, double>::const_iterator begin() const;
+  std::map<std::string, double>::const_iterator end() const;
+
+  static bool checkDate(const std::string& date);
+};
+
+/* BitcoinExchange */
 class BitcoinExchange {
  private:
   Database db_;
 
-  bool check_value_(const std::string&);
-  void process_valid_input_(const std::string&, double);
+  bool checkValue(const std::string&);
+  void processValidInput(const std::string&, double);
 
   BitcoinExchange();
   BitcoinExchange(const BitcoinExchange&);
